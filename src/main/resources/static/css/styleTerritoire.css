@@ -1,0 +1,108 @@
+
+.territoire-header {
+    background-color: #ffba07;
+    height: 100px;
+}
+
+.territoire-header h1 {
+    margin-top:64px;
+    margin-left: 80px;
+    font-family: Arial, sans-serif;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+
+
+.territoire-main{
+    display: flex;
+    justify-content: space-evenly;
+    margin: 50px 30px;
+    font-family: Arial, sans-serif;
+}
+
+.territoire-title{
+    width: 30%;
+    font-family: Arial, sans-serif;
+    margin-left: 30px;
+    margin-right: 30px;
+    padding-right: 20px;
+    font-weight: lighter;
+}
+
+.territoire-title h2{
+    text-transform: uppercase;
+    color: #ffba07;
+    font-size: 15px;
+}
+
+.territoire-title h1{
+    font-size: 20px;
+}
+
+
+.territoire-text{
+    width: 70%;
+    line-height: 2;
+    text-align: justify;
+    padding-right: 20px;
+    font-size: 10px;
+}
+
+.search-bar{
+    display: flex;
+    justify-content: right;
+    margin-right: 60px;
+    font-size: 10px;
+}
+
+.territoire-map{
+    display: flex;
+    padding-left: 10px;
+    height: 400px;
+    margin: 20px 30px 100px 30px;
+}
+
+/* Style for the positioning of the map */
+#mapid{
+    margin: 20px;
+    width: 35%;
+    border: solid black 2px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Style for the table container */
+.table-container {
+    width: 65%;
+    margin: 20px;
+    overflow-y: scroll ;
+}
+
+
+.table {
+    border-collapse: collapse;
+    overflow: hidden;
+    font-size: 10px;
+}
+
+
+.table-head {
+    padding: 10px;
+    border-bottom: solid #ffba07 2px;
+    text-align: left;
+    font-weight: bold;
+}
+
+
+.sortable:hover {
+    cursor: pointer;
+    color: #0694fb;
+}
+
+/* Style for the table cells */
+.cell {
+    padding: 10px;
+    border-top: solid #cccccc 0.5px;
+}
+
