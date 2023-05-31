@@ -1,0 +1,62 @@
+
+.index-header {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    background-image: url("photos/Moulin.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 550px;
+}
+
+.index-header h1{
+    margin-left: 5%;
+    margin-top: 332px;
+    color:white;
+    font-size: 80px;
+    font-family: arial, sans-serif;
+    font-weight: bold;
+    line-height: 100px;
+}
+
+#index-title-moulin {
+    margin-left: 10%;
+    margin-right: 100px;
+    color: #ffba07;
+    font-size: 196px;
+    font-family: arial, sans-serif;
+    font-weight: bold;
+}
+
+
+.index-welcome{
+    display: flex;
+    justify-content: space-evenly;
+    margin: 50px 50px;
+}
+
+#index-welcome-title, #index-welcome-text{
+    margin-top: 0;
+    padding-top: 0;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#index-welcome-title{
+    width: 40%;
+    font-family: Arial, sans-serif;
+    font-size: 30px;
+}
+
+#index-welcome-text{
+    width: 60%;
+    font-family: Arial, sans-serif;
+    text-align: justify;
+    font-size: 12px;
+    line-height: 2.5;
+}
+
+#index-welcome-p2{
+    font-weight: bold;
+}
