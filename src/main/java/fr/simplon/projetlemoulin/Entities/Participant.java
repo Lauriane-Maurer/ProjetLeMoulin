@@ -1,14 +1,13 @@
 package fr.simplon.projetlemoulin.Entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
 import java.util.Set;
 
+@Entity
+@Table(name="events")
 public class Participant {
 
     @Id
