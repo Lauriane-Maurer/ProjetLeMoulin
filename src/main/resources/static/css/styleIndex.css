@@ -4,7 +4,7 @@
     padding: 0;
     display: flex;
     flex-direction: column;
-    background-image: url("photos/Moulin.png");
+    background-image: url("../photos/Moulin.png");
     background-size: cover;
     background-repeat: no-repeat;
     height: 550px;
