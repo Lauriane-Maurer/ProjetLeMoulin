@@ -1,9 +1,13 @@
 package fr.simplon.projetlemoulin.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotNull;
+
+import java.util.Set;
 
 public class Participant {
 
@@ -19,6 +23,10 @@ public class Participant {
     private String email;
     private int zip_code;
     private String username;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "participant")
+    private Set<ParticipantEvent> participantEvents;
 
     public Participant() {
     }

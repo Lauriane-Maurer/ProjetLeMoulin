@@ -1,10 +1,14 @@
 package fr.simplon.projetlemoulin.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.antlr.v4.runtime.misc.NotNull;
 import jakarta.validation.constraints.Future;
+import org.hibernate.annotations.Cascade;
 
 import java.time.LocalDateTime;
+import java.util.List;
+
 @Entity
 @Table(name="events")
 public class Event {
@@ -32,6 +36,11 @@ public class Event {
     private Double price;
     private String speaker;
     private String photo;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "event")
+    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
+    private List<ParticipantEvent> participantEvents;
 
     public Event() {
     }
