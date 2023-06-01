@@ -7,6 +7,16 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+
+/**
+ * REST controller for managing partners.
+ *
+ * This class handles HTTP requests related to partner entities. It provides
+ * endpoints for retrieving, adding, updating, and deleting partners (CRUD).
+ *
+ *  @RestController indicates that this class is a controller that handles RESTful requests
+ */
+
 @RestController
 public class PartnerServerController {
 
@@ -29,13 +39,23 @@ public class PartnerServerController {
 
     }
 
+    /**
+     * Retrieves all partners from the repository.
+     *
+     * @return A list of all partners.
+     */
     @GetMapping(path = "/rest/partners")
     public List<Partner> getAllPartners() {
         return repo.findAll();
     }
 
 
-    @GetMapping("/rest/api/partners")
+    /**
+     * Retrieves all partners as JSON from the repository.
+     *
+     * @return A list of all partners in JSON format.
+     */
+    @GetMapping("/rest/partnersLocation")
     @ResponseBody
     public List<Partner> getAllPartnersAsJson() {
         List<Partner> partners = repo.findAll();
@@ -43,18 +63,38 @@ public class PartnerServerController {
     }
 
 
+    /**
+     * Retrieves details of a specific partner by its ID.
+     *
+     * @param id The ID of the partner to retrieve.
+     * @return The partner with the specified ID.
+     * @throws NoSuchElementException if the partner with the given ID is not found.
+     */
     @GetMapping(path = "/rest/partners/{id}")
     public Partner getPartnerDetails(@PathVariable Long id)throws NoSuchElementException {
         return repo.findById(id).orElseThrow();
     }
 
 
+    /**
+     * Adds a new partner to the repository.
+     *
+     * @param newPartner The partner to add.
+     * @return The newly added partner.
+     */
     @PostMapping("/rest/partners")
     public Partner addPartner(@RequestBody Partner newPartner) {
         return repo.save(newPartner);
     }
 
 
+    /**
+     * Updates an existing partner in the repository.
+     *
+     * @param newPartner The updated partner data.
+     * @param id The ID of the partner to update.
+     * @return The updated partner.
+     */
     @PutMapping("/rest/updatePartner/{id}")
     public Partner updatePartner(@RequestBody Partner newPartner, @PathVariable Long id) {
         return repo.findById(id)
@@ -76,6 +116,11 @@ public class PartnerServerController {
                 });
     }
 
+    /**
+     * Deletes a partner from the repository.
+     *
+     * @param id The ID of the partner to delete.
+     */
     @DeleteMapping("/rest/partners/{id}")
     public void deletePartner(@PathVariable Long id) {
         repo.deleteById(id);
