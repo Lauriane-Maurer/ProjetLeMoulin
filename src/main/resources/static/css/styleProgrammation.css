@@ -1,0 +1,49 @@
+
+.programmation-header {
+    height: 250px;
+}
+
+.programmation-header h1{
+    position: absolute;
+    z-index: -1;
+    color: #f5f4f4;
+    font-size: 140px;
+    margin: 0;
+    padding: 0;
+}
+
+
+.programmation-header h2{
+    margin-top: 100px;
+    text-align: center;
+    color: #ffba07;
+    font-size: 50px;
+}
+
+
+#moulin-titre-programmation {
+    font-size: 120px;
+}
+
+
+.programmation-texte {
+    margin: 30px 150px;
+    text-align: center;
+    font-size: 11px;
+    line-height: 2;
+}
+
+.programmation-affichage{
+    margin: 20px 120px;
+    align-items: center;
+}
+
+#listings{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#authName{
+    color: white;
+}
