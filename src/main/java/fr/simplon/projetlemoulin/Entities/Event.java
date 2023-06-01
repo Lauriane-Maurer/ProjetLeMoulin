@@ -45,13 +45,12 @@ public class Event {
     public Event() {
     }
 
-    public Event(String type, String title, String description, LocalDateTime startDate, LocalDateTime endDate, boolean limit_places, Integer total_places, Integer available_places, Double price, String speaker, String photo) {
+    public Event(String type, String title, String description, LocalDateTime startDate, LocalDateTime endDate, boolean limit_places, Integer total_places, Integer available_places, Double price, String speaker, String photo, List<ParticipantEvent> participantEvents) {
         this.type = type;
         this.title = title;
         this.description = description;
         this.startDate = startDate;
-        EndDate = endDate;
-        this.limit_places = limit_places;
+        this.EndDate = endDate;
         this.total_places = total_places;
         this.available_places = available_places;
         this.price = price;
@@ -153,5 +152,13 @@ public class Event {
 
     public void setPhoto(String photo) {
         this.photo = photo;
+    }
+
+    public List<ParticipantEvent> getParticipantEvents() {
+        return participantEvents;
+    }
+
+    public void setParticipantEvents(List<ParticipantEvent> participantEvents) {
+        this.participantEvents = participantEvents;
     }
 }
