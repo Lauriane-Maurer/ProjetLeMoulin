@@ -7,7 +7,7 @@ import jakarta.validation.constraints.NotNull;
 import java.util.Set;
 
 @Entity
-@Table(name="events")
+@Table(name="participants")
 public class Participant {
 
     @Id
@@ -30,13 +30,14 @@ public class Participant {
     public Participant() {
     }
 
-    public Participant(String firstName, String lastName, String phone, String email, int zip_code, String username) {
+    public Participant(String firstName, String lastName, String phone, String email, int zip_code, String username, Set<ParticipantEvent> participantEvents) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phone = phone;
         this.email = email;
         this.zip_code = zip_code;
         this.username = username;
+        this.participantEvents = participantEvents;
     }
 
     public Long getId() {
@@ -93,5 +94,13 @@ public class Participant {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public Set<ParticipantEvent> getParticipantEvents() {
+        return participantEvents;
+    }
+
+    public void setParticipantEvents(Set<ParticipantEvent> participantEvents) {
+        this.participantEvents = participantEvents;
     }
 }
