@@ -32,11 +32,16 @@
         </section>
       </div>
 
+      <div class="search-bar" id="search">
+        <p for="search-input">Recherche par mot-clé:
+          <input type="text" id="search-input" oninput="filterPartners()">
+        </p>
+      </div>
 
       <section class="territoire-map">
         <div id="mapid"></div>
         <div class="table-container">
-          <table class="table">
+          <table class="grid">
             <thead>
               <tr>
                 <th class="table-head sortable">Nom</th>

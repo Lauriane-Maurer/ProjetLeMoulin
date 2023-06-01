@@ -32,7 +32,7 @@ public class PartnerClientController {
     }
 
 
-    @GetMapping("/api/partners")
+    @GetMapping("/api/partenaires")
     @ResponseBody
     public List<Partner> getAllPartnersAPIGeolocalisation() {
         RestTemplate restTemplate = new RestTemplate();
