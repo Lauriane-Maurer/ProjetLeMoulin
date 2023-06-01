@@ -61,7 +61,7 @@ public class UserController {
     @GetMapping("/inscription")
     public String subscribe(Model model) {
         model.addAttribute("user", new CreateUserForm());
-        return "registration";
+        return "inscriptionMembre";
     }
 
     @PostMapping("/inscription")
@@ -78,7 +78,7 @@ public class UserController {
             validation.addError(new ObjectError("user", "Cet utilisateur existe déjà"));
         }
         if (validation.hasErrors()) {
-            return "/registration";
+            return "/inscriptionMembre";
         }
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         // Roles for new user
