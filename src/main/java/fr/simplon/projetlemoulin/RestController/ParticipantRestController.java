@@ -52,5 +52,8 @@ public class ParticipantRestController {
     }
 
 
-
+    @GetMapping(path = "/rest/participants/{username}")
+    public Participant displayParticipantByUsername(@PathVariable String username) {
+        return repo.findByUsername(username);
+    }
 }

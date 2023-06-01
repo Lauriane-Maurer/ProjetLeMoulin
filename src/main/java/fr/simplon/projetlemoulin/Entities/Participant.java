@@ -14,9 +14,9 @@ public class Participant {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotNull
-    private String firstName;
+    private String firstname;
     @NotNull
-    private String lastName;
+    private String lastname;
     private String phone;
 
     private String email;
@@ -30,9 +30,9 @@ public class Participant {
     public Participant() {
     }
 
-    public Participant(String firstName, String lastName, String phone, String email, int zip_code, String username, Set<ParticipantEvent> participantEvents) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public Participant(String firstname, String lastname, String phone, String email, int zip_code, String username, Set<ParticipantEvent> participantEvents) {
+        this.firstname = firstname;
+        this.lastname = lastname;
         this.phone = phone;
         this.email = email;
         this.zip_code = zip_code;
@@ -48,20 +48,20 @@ public class Participant {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getLastname() {
+        return lastname;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     public String getPhone() {

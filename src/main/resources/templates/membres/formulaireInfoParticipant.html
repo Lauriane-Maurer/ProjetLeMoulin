@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/css/styleMoulin.css">
+  <link rel="stylesheet" href="/css/styleNavbar.css">
+  <link rel="stylesheet" href="/css/styleFormulaireCreation.css">
+  <title>Informations Participant</title>
+</head>
+
+<body>
+
+<header class="createForm-header">
+  <div th:replace="~{fragments/fragment_navbar :: fragment_navbar}" ></div>
+  <h1>Informations : </h1>
+</header>
+
+<main>
+  <form th:action="@{/InfoParticipant}" th:object="${participant}" method="post" >
+    <p class="createForm-introduction">Merci de compléter les informations suivantes:</p>
+    <div class="form-section">
+      <input class="form-item" type="text" th:field="*{firstname}" placeholder="Prénom" required/>
+      <input class="form-item" type="text" th:field="*{lastname}" placeholder="Nom" required/>
+      <input class="form-item" type="text" th:field="*{phone}" placeholder="Téléphone" required/>
+      <input class="form-item" type="email" th:field="*{email}" placeholder="Email" required/>
+      <input class="form-item" type="number" th:field="*{zip_code}" placeholder="Code postal" required/>
+      <input class="form-item" type="hidden" th:field="*{username}" th:value="${#authentication.getName()}"/>
+      <input class="form-item" type="hidden" th:field="*{id}" />
+      <input class="form-item" type="hidden" th:field="*{participantEvents}" />
+    </div>
+    <input class="creation-button" type="submit" value="Enregistrer"/>
+  </form>
+</main>
+
+</body>
+
+</html>
