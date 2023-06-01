@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/styleMoulin.css">
+    <link rel="stylesheet" href="/css/styleNavbar.css">
+    <link rel="stylesheet" href="/css/styleFormulaireParticipation.css">
+    <title>Participation à un évènement</title>
+  </head>
+
+  <body>
+
+    <header class="EventParticipationForm-header">
+      <div th:replace="~{fragments/fragment_navbar :: fragment_navbar}" ></div>
+      <h1>Inscription </h1>
+    </header>
+
+    <main>
+      <form th:action="@{/InscriptionParticipant}" th:object="${participantEvent}" method="post" >
+        <div class="EventParticipationForm-introduction">
+          <p>Je souhaite m'inscrire à l'évènement <span th:text="${event.title}"></span></p>
+          <p>qui a lieu
+            <span th:if="${#temporals.format(event.start_date, 'yyyyMMdd')} == ${#temporals.format(event.end_date, 'yyyyMMdd')}">
+              <span>Le </span>
+              <span th:text="${#temporals.dayOfWeekName(event.start_date)}"></span>
+              <span th:text="${#temporals.day(event.start_date)}"></span>
+              <span th:text="${#temporals.monthName(event.start_date)}"></span>
+              <span>de </span>
+              <span th:text="${#temporals.hour(event.start_date)}"></span>
+              <span>h</span>
+              <span th:text="${#temporals.format(event.start_date, 'mm')}"></span>
+              <span>à </span>
+              <span th:text="${#temporals.hour(event.end_date)}"></span>
+              <span>h</span>
+              <span th:text="${#temporals.format(event.end_date, 'mm')}"></span>
+            </span>
+            <span th:unless="${#temporals.format(event.start_date, 'yyyyMMdd')} == ${#temporals.format(event.end_date, 'yyyyMMdd')}">
+              <span>Du </span>
+              <span th:text="${#temporals.dayOfWeekName(event.start_date)}"></span>
+              <span th:text="${#temporals.day(event.start_date)}"></span>
+              <span th:text="${#temporals.monthName(event.start_date)}"></span> à
+              <span th:text="${#temporals.hour(event.start_date)}"></span>
+              <span>h</span>
+              <span th:text="${#temporals.format(event.start_date, 'mm')}"></span>
+              <span>au </span>
+              <span th:text="${#temporals.dayOfWeekName(event.end_date)}"></span>
+              <span th:text="${#temporals.day(event.end_date)}"></span>
+              <span th:text="${#temporals.monthName(event.end_date)}"></span> à
+              <span th:text="${#temporals.hour(event.end_date)}"></span>
+              <span>h</span>
+              <span th:text="${#temporals.format(event.end_date, 'mm')}"></span>
+            </span>
+          </p>
+        </div>
+
+        <div class="EventParticipationForm-informations">
+          <p>Informations personnelles :</p>
+          <input type="text" th:field="${participant.firstname}" readonly/>
+          <input type="text" th:field="${participant.lastname}" readonly/>
+          <input type="text" th:field="${participant.phone}" readonly/>
+          <input type="email" th:field="${participant.email}" readonly/>
+          <input type="number" th:field="${participant.zip_code}" readonly/>
+          <input type="hidden" th:field="${participant.username}" th:value="${#authentication.getName()}" readonly/>
+          <input type="hidden" th:value="${participant.id}" th:field="*{participant.id}" readonly/>
+          <input type="hidden" th:value="${event.id}" th:field="*{event.id}" readonly/>
+          <br>
+          <button class="confirmation-button" type="submit">Je confirme mon inscription</button>
+        </div>
+      </form>
+    </main>
+
+  </body>
+
+</html>

@@ -35,6 +35,19 @@ public class ParticipantEventRestController {
         return repo.save(newParticipantEvent);
     }
 
+    @GetMapping(path= "/rest/participantEvenement/{participantId}")
+    public List<ParticipantEvent> getEventsByParticipantId(@PathVariable Long participantId) {
+        return repo.findByParticipantId(participantId);
+    }
 
+    @GetMapping(path= "/rest/InscritsEvenement/{evenementId}")
+    public List<ParticipantEvent> getParticipantsByEventId(@PathVariable Long eventId) {
+        return repo.findByEventId(eventId);
+    }
+
+    @GetMapping("/rest/participantEvent/checkRegistration")
+    public boolean checkParticipantRegistration(@RequestParam Long participantId, @RequestParam Long eventId) {
+        return repo.existsByParticipantIdAndEventId(participantId, eventId);
+    }
 
 }

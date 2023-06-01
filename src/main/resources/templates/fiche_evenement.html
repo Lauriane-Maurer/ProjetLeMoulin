@@ -59,6 +59,7 @@
           <p class="eventDetails-speaker"> Intervenant.e.s :
             <span th:text="*{event.speaker}"></span>
           </p>
+          <button th:if="${event.limit_places == true}" class="eventDetails-button" type="button" th:onclick="|window.location.href= '@{/InscriptionParticipant/{eventId}/{username}(eventId=${event.id}, username=${#authentication.getName()})}'|">S'inscrire</button>
         </div>
       </section>
 

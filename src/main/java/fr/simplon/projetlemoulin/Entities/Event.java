@@ -178,4 +178,24 @@ public class Event {
     public void setPartners(List<Partner> partners) {
         this.partners = partners;
     }
+
+    @PrePersist
+    private void initAvalaiblePlaces() {
+        if (total_places != null) {
+            available_places = total_places;
+        }
+    }
+
+    public void decrementAvailablePlaces() {
+        if (this.available_places != null) {
+            this.available_places--;
+        }
+    }
+
+    public void incrementPlacesRestantes() {
+        if (this.available_places != null) {
+            this.available_places++;
+        }
+    }
+
 }
