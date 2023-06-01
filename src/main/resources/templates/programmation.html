@@ -14,17 +14,22 @@
 
 <div th:replace="~{fragments/fragment_navbar :: fragment_navbar}" ></div>
 
-<header class="programmation-header">
+<header class="programming-header">
     <h1>Le Programme</h1>
-    <h2>Les rendez-vous du <span id="moulin-titre-programmation">Moulin</span></h2>
+    <h2>Les rendez-vous du <span id="programming-title-Moulin">Moulin</span></h2>
 </header>
 
 <main>
-    <p class="programmation-texte">Le Moulin propose des ateliers à la demi-journée ou à la journée animés par des professionnels, des conférences sur des thèmes variés, des animations culturelles éphémères et des stages en pension complète. Pour découvrir le programme et réservez sa place, c’est par ici! </p>
-
+    <p class="programming-text">Le Moulin propose des ateliers à la demi-journée ou à la journée animés par des professionnels, des conférences sur des thèmes variés, des animations culturelles éphémères et des stages en pension complète. Pour découvrir le programme et réservez sa place, c’est par ici! </p>
+    <div class="display-events">
+        <div id="listings"></div>
+    </div>
 </main>
 
 
 </body>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/javascript/EventCard.js"></script>
 
 </html>

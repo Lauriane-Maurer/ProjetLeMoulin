@@ -25,10 +25,10 @@ public class Event {
     private String description;
     @Future(message = "La date de début doit être dans le futur")
     @NotNull
-    private LocalDateTime startDate;
+    private LocalDateTime start_date;
     @Future(message = "La date de fin doit être dans le futur")
     @NotNull
-    private LocalDateTime EndDate;
+    private LocalDateTime end_date;
 
     private boolean limit_places;
     private Integer total_places;
@@ -45,17 +45,19 @@ public class Event {
     public Event() {
     }
 
-    public Event(String type, String title, String description, LocalDateTime startDate, LocalDateTime endDate, boolean limit_places, Integer total_places, Integer available_places, Double price, String speaker, String photo, List<ParticipantEvent> participantEvents) {
+    public Event(String type, String title, String description, LocalDateTime start_date, LocalDateTime end_date, boolean limit_places, Integer total_places, Integer available_places, Double price, String speaker, String photo, List<ParticipantEvent> participantEvents) {
         this.type = type;
         this.title = title;
         this.description = description;
-        this.startDate = startDate;
-        this.EndDate = endDate;
+        this.start_date = start_date;
+        this.end_date = end_date;
+        this.limit_places = limit_places;
         this.total_places = total_places;
         this.available_places = available_places;
         this.price = price;
         this.speaker = speaker;
         this.photo = photo;
+        this.participantEvents = participantEvents;
     }
 
     public Long getId() {
@@ -90,20 +92,20 @@ public class Event {
         this.description = description;
     }
 
-    public LocalDateTime getStartDate() {
-        return startDate;
+    public LocalDateTime getStart_date() {
+        return start_date;
     }
 
-    public void setStartDate(LocalDateTime startDate) {
-        this.startDate = startDate;
+    public void setStart_date(LocalDateTime start_date) {
+        this.start_date = start_date;
     }
 
-    public LocalDateTime getEndDate() {
-        return EndDate;
+    public LocalDateTime getEnd_date() {
+        return end_date;
     }
 
-    public void setEndDate(LocalDateTime endDate) {
-        EndDate = endDate;
+    public void setEnd_date(LocalDateTime end_date) {
+        this.end_date = end_date;
     }
 
     public boolean isLimit_places() {

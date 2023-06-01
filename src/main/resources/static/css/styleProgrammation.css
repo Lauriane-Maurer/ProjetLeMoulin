@@ -1,9 +1,9 @@
 
-.programmation-header {
+.programming-header {
     height: 250px;
 }
 
-.programmation-header h1{
+.programming-header h1{
     position: absolute;
     z-index: -1;
     color: #f5f4f4;
@@ -13,7 +13,7 @@
 }
 
 
-.programmation-header h2{
+.programming-header h2{
     margin-top: 100px;
     text-align: center;
     color: #ffba07;
@@ -21,19 +21,19 @@
 }
 
 
-#moulin-titre-programmation {
+#programming-title-Moulin {
     font-size: 120px;
 }
 
 
-.programmation-texte {
+.programming-text {
     margin: 30px 150px;
     text-align: center;
     font-size: 11px;
     line-height: 2;
 }
 
-.programmation-affichage{
+.display-events{
     margin: 20px 120px;
     align-items: center;
 }
@@ -44,6 +44,62 @@
     flex-wrap: wrap;
 }
 
-#authName{
-    color: white;
+/*-------------------------- CSS Affichage des évènements ----------------------------------------*/
+
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 280px;
+    height: 420px;
+    margin: 20px;
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 0 5px rgba(0,0,0,.3);
+    text-align: center;
 }
+.card img {
+    width: 100%;
+    height: 230px;
+    object-fit: cover;
+}
+.card-content {
+    padding: 10px;
+    flex-grow: 1;
+}
+
+.card-type {
+    font-size: 11px;
+    font-weight: bold;
+    margin-top: 30px;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.card-title {
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.card-date {
+    font-size: 10px;
+    margin-bottom: 10px;
+}
+
+.card-button {
+    width: 100px;
+    margin-top: 25px;
+    padding: 10px;
+    border: none;
+    background-color: #0694fb;
+    color: white;
+    font-size: 10px;
+    font-weight: bold;
+    box-shadow: 0 0 5px rgba(0,0,0,.3);
+}
+
+
