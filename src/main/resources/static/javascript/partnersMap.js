@@ -13,7 +13,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 /**
  * Fetches partners data from the API and adds markers for each organization to the map.
  */
-fetch("/api/partenaires")
+fetch("/geolocalisationPartenaires")
     .then(response => response.json())
     .then(data => {
         // Browse the retrieved data and create a marker for each organizations.

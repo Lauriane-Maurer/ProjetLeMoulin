@@ -1,6 +1,6 @@
 
 document.addEventListener('DOMContentLoaded', () => {
-    fetch('/api/evenements')
+    fetch('/cartesEvenements')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Erreur lors de la récupération des données.');
