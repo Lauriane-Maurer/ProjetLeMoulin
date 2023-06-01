@@ -6,6 +6,7 @@ import org.springframework.http.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
@@ -24,6 +25,7 @@ public class EventClientController {
 
     private RestTemplate restTemplate;
 
+
     /**
      * Retrieves the "programmation" page.
      *
@@ -33,11 +35,11 @@ public class EventClientController {
      *
      * @return The view name for the "programmation" page.
      */
-
     @GetMapping("/programmation")
     public String getProgrammationPage() {
         return "programmation";
     }
+
 
     /**
      * Retrieves all events from the API endpoint.
@@ -62,5 +64,14 @@ public class EventClientController {
         return response.getBody();
     }
 
+    @GetMapping("/evenements/{id}")
+    public String getEvent(Model model, @PathVariable Long id) {
+        this.restTemplate = new RestTemplate();
+        String url = "http://localhost:8085/rest/events/{id}";
+        ResponseEntity<Event> response = restTemplate.getForEntity(url, Event.class, id);
+        Event event = response.getBody();
+        model.addAttribute("event", event);
+        return "fiche_evenement";
+    }
 
 }

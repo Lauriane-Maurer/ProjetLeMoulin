@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
+    <link rel="stylesheet" href="/css/styleMoulin.css">
+    <link rel="stylesheet" href="/css/styleNavbar.css">
+    <link rel="stylesheet" href="/css/styleFicheEvenement.css">
+    <title>Title</title>
+  </head>
+
+  <body>
+
+    <header class="eventDetails-header">
+      <div th:replace="~{fragments/fragment_navbar :: fragment_navbar}" ></div>
+    </header>
+
+    <main>
+
+      <section class="eventDetails-block">
+        <img class="eventDetails-image" th:src="*{event.photo}" alt="${event.title}">
+        <div class="eventDetails-text">
+          <p class="eventDetails-date">
+            <span th:if="${#temporals.format(event.start_date, 'yyyyMMdd')} == ${#temporals.format(event.end_date, 'yyyyMMdd')}">
+              <span>Le </span>
+              <span th:text="${#temporals.dayOfWeekName(event.start_date)}"></span>
+              <span th:text="${#temporals.day(event.start_date)}"></span>
+              <span th:text="${#temporals.monthName(event.start_date)}"></span>
+              <span>de </span>
+              <span th:text="${#temporals.hour(event.start_date)}"></span>
+              <span>h</span>
+              <span th:text="${#temporals.format(event.start_date, 'mm')}"></span>
+              <span>à </span>
+              <span th:text="${#temporals.hour(event.end_date)}"></span>
+              <span>h</span>
+              <span th:text="${#temporals.format(event.end_date, 'mm')}"></span>
+            </span>
+            <span th:unless="${#temporals.format(event.end_date, 'yyyyMMdd')} == ${#temporals.format(event.end_date, 'yyyyMMdd')}">
+              <span>Du </span>
+              <span th:text="${#temporals.dayOfWeekName(event.start_date)}"></span>
+              <span th:text="${#temporals.day(event.start_date)}"></span>
+              <span th:text="${#temporals.monthName(event.start_date)}"></span> à
+              <span th:text="${#temporals.hour(event.start_date)}"></span>
+              <span>h</span>
+              <span th:text="${#temporals.format(event.start_date, 'mm')}"></span>
+              <span>au </span>
+              <span th:text="${#temporals.dayOfWeekName(event.end_date)}"></span>
+              <span th:text="${#temporals.day(event.end_date)}"></span>
+              <span th:text="${#temporals.monthName(event.end_date)}"></span> à
+              <span th:text="${#temporals.hour(event.end_date)}"></span>
+              <span>h</span>
+              <span th:text="${#temporals.format(event.end_date, 'mm')}"></span>
+            </span>
+          </p>
+          <h1 th:text="*{event.title}"></h1>
+          <p class="eventDetails-description" th:text="*{event.description}"></p>
+          <p class="eventDetails-speaker"> Intervenant.e.s :
+            <span th:text="*{event.speaker}"></span>
+          </p>
+        </div>
+      </section>
+
+      <section class="eventDetails-block">
+        <div class="eventDetails-numbers">
+          <p th:if="${event.limit_places == true}" >Nombre de places ouvertes: <span  th:text="*{event.total_places}"></span></p>
+          <p th:if="${event.limit_places == true}">Nombre de places restantes: <span  th:text="*{event.available_places}"></span></p>
+          <br>
+          <p th:if="${event.limit_places == true}">Tarif / personne: <span  th:text="*{event.price}"></span> €</p>
+          <p th:if="${event.limit_places != true}">Entrée libre</p>
+        </div>
+        <div class="eventDetails-contact">
+          <div class="eventDetails-contact-info">
+            <h5>Pour se rendre au moulin:</h5>
+            <p>Moulin de Kergounan</p>
+            <p>29830 Lampaul-Ploudalmézeau</p>
+            <br>
+            <h5>Contact:</h5>
+            <p>contacter Nathalie au 07 06 05 04 03</p>
+            <p>Email: poulet.te@ecolieumoulinduroz.org</p>
+            <p>29830 Lampaul-Ploudalmézeau</p>
+          </div>
+          <div id="mapLocationMoulin"></div>
+        </div>
+      </section>
+    </main>
+  </body>
+
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="/javascript/locationMoulin.js"></script>
+
+</html>
