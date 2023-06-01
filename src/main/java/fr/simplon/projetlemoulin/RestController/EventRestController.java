@@ -1,4 +1,4 @@
-package fr.simplon.projetlemoulin.ServerController;
+package fr.simplon.projetlemoulin.RestController;
 
 import fr.simplon.projetlemoulin.Entities.Event;
 import fr.simplon.projetlemoulin.Repository.EventRepository;
@@ -18,14 +18,14 @@ import java.util.NoSuchElementException;
  */
 
 @RestController
-public class EventServerController {
+public class EventRestController {
 
     @Autowired
     private EventRepository repo;
 
 
     @Autowired
-    public EventServerController(EventRepository fr) {
+    public EventRestController(EventRepository fr) {
         this.repo = fr;
 
         //this.repo.save(new Event("Stage", "Fresque de la biodiversité","Fresque de la biodiversité, kesako? Un atelier collaboratif pour mieux comprendre le rôle des écosystèmes et imaginer ensemble comment inverser les tendances de leurs effondrement. Une expérience d’intelligence collective qui parle autant à la tête qu’au coeur.", LocalDateTime.of(2023, 8, 9, 10,00), LocalDateTime.of(2023, 8, 9, 17, 00),true, 10, 10, 5.00, "Nathalie Richard", "https://picsum.photos/id/290/150.webp",null));
@@ -102,6 +102,7 @@ public class EventServerController {
                     event.setSpeaker(newEvent.getSpeaker());
                     event.setPhoto(newEvent.getPhoto());
                     event.setParticipantEvents(newEvent.getParticipantEvents());
+                    event.setPartners(newEvent.getPartners());
                     return repo.save(event);
                 })
                 .orElseGet(() -> {

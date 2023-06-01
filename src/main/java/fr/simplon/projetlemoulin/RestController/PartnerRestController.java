@@ -1,4 +1,4 @@
-package fr.simplon.projetlemoulin.ServerController;
+package fr.simplon.projetlemoulin.RestController;
 import fr.simplon.projetlemoulin.Entities.Partner;
 import fr.simplon.projetlemoulin.Repository.PartnerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,13 +18,13 @@ import java.util.NoSuchElementException;
  */
 
 @RestController
-public class PartnerServerController {
+public class PartnerRestController {
 
     private PartnerRepository repo;
 
 
     @Autowired
-    public PartnerServerController(PartnerRepository fr) {
+    public PartnerRestController(PartnerRepository fr) {
         this.repo = fr;
 
         //this.repo.save(new Partner("Gaec Gwel Ar Mor", "producteur","	Elevage de vaches, production et vente sur les marchés et à la ferme de produits laitiers: beurre, crème, yaourt à boire, petits fromages frais enrobés ou nature, skir.", "7 Bourg", "Lampaul-Ploudalmezeau", 29830, "www.gwelarmor.fr", 48.56241900228485, -4.609485545551342));
@@ -108,6 +108,7 @@ public class PartnerServerController {
                     partner.setUrl(newPartner.getUrl());
                     partner.setLatitude(newPartner.getLatitude());
                     partner.setLongitude(newPartner.getLongitude());
+                    partner.setEvent(newPartner.getEvent());
                     return repo.save(partner);
                 })
                 .orElseGet(() -> {

@@ -3,6 +3,8 @@ package fr.simplon.projetlemoulin.Entities;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
+import java.util.List;
+
 @Entity
 @Table(name="partners")
 public class Partner {
@@ -24,10 +26,16 @@ public class Partner {
     private Double latitude;
     private Double longitude;
 
+    @ManyToMany
+    @JoinTable(name = "event_partner",
+            joinColumns = @JoinColumn(name = "event_id"),
+            inverseJoinColumns = @JoinColumn(name = "partner_id"))
+    private List<Event> event;
+
     public Partner() {
     }
 
-    public Partner(String name, String activity, String description, String adress, String town, int zip_code, String url, Double latitude, Double longitude) {
+    public Partner(String name, String activity, String description, String adress, String town, int zip_code, String url, Double latitude, Double longitude, List<Event> event) {
         this.name = name;
         this.activity = activity;
         this.description = description;
@@ -37,6 +45,7 @@ public class Partner {
         this.url = url;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.event = event;
     }
 
     public Long getId() {
@@ -117,5 +126,13 @@ public class Partner {
 
     public void setLongitude(Double longitude) {
         this.longitude = longitude;
+    }
+
+    public List<Event> getEvent() {
+        return event;
+    }
+
+    public void setEvent(List<Event> event) {
+        this.event = event;
     }
 }
