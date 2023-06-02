@@ -11,3 +11,8 @@ function confirmDeletion(id) {
         }
 }
 
+function confirmDeletionPartner(id) {
+    if (confirm("Êtes-vous sûr de vouloir supprimer ce partenaire ?")) {
+        window.location.href = '/supprimerPartenaire/' + id;
+    }
+}

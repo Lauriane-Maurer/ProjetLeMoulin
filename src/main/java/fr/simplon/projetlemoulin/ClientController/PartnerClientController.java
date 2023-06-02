@@ -130,4 +130,16 @@ public class PartnerClientController {
         model.addAttribute("Message", "Les données de l'organisme partenaire ont bien été mises à jour.");
         return "message";
     }
+
+
+    @GetMapping ("supprimerPartenaire/{id}")
+    public String deletePartner(Model model, @PathVariable Long id){
+        this.restTemplate = new RestTemplate();
+        String url="http://localhost:8085/rest/partners/{id}";
+        restTemplate.delete(url, id);
+
+        model.addAttribute("Message", "L'organisme partenaire a bien été supprimé.");
+        return "message";
+    }
+
 }
