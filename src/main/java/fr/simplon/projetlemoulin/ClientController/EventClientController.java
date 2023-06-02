@@ -74,4 +74,20 @@ public class EventClientController {
         return "fiche_evenement";
     }
 
+
+
+    @GetMapping("/admin/listeEvenements")
+    public String displayEventsManagementList(Model model){
+        this.restTemplate = new RestTemplate();
+        String url ="http://localhost:8085/rest/events";
+        ResponseEntity<List<Event>> response=restTemplate.exchange(
+                url,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<Event>>(){});
+        List<Event> events = response.getBody();
+        model.addAttribute("events", events);
+        return "admin/listeEvenementsAdmin";
+    }
+
 }

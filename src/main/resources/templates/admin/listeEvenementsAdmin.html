@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/css/styleMoulin.css">
+  <link rel="stylesheet" href="/css/styleNavbar.css">
+  <link rel="stylesheet" href="/css/styleListe.css">
+  <title>Page Admin - Liste des évènements</title>
+</head>
+
+<body>
+<div th:replace="~{fragments/fragment_navbar :: fragment_navbar}" ></div>
+<header class="List-header">
+  <h1>Gestion des évènements</h1>
+</header>
+
+<main class="List-main">
+  <div>
+    <table class="List-table">
+      <thead>
+      <tr>
+        <th class="column-status"></th>
+        <th class="column-title">Titre</th>
+        <th class="column-other">Date de début</th>
+        <th class="column-other">Date de fin</th>
+
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="event : ${events}">
+        <td><img class="image-status" th:src="@{${event.start_date < #temporals.createNow()} ? '/photos/closed.png' : '/photos/open.png'}">
+        </td>
+        <td class="cell" th:text="${event.title}"></td>
+        <td class="cell" th:text="${event.start_date}"></td>
+        <td class="cell" th:text="${event.end_date}"></td>
+
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</main>
+</body>
+</html>
