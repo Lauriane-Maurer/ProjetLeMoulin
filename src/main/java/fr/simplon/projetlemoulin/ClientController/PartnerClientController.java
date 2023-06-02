@@ -96,4 +96,18 @@ public class PartnerClientController {
     }
 
 
+    @GetMapping("/admin/listePartenaires")
+    public String displayPartnersListAdmin(Model model){
+        this.restTemplate = new RestTemplate();
+        String url ="http://localhost:8085/rest/partners";
+        ResponseEntity<List<Partner>> response=restTemplate.exchange(
+                url,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<Partner>>(){});
+        List<Partner> partners = response.getBody();
+        model.addAttribute("partners", partners);
+        return "admin/listePartenairesAdmin";
+    }
+
 }
