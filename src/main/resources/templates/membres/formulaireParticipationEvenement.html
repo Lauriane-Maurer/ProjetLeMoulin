@@ -6,20 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/css/styleMoulin.css">
     <link rel="stylesheet" href="/css/styleNavbar.css">
-    <link rel="stylesheet" href="/css/styleFormulaireParticipation.css">
+    <link rel="stylesheet" href="/css/styleFormulaireParticipant.css">
     <title>Participation à un évènement</title>
   </head>
 
   <body>
 
-    <header class="EventParticipationForm-header">
+    <header class="ParticipantForm-header">
       <div th:replace="~{fragments/fragment_navbar :: fragment_navbar}" ></div>
       <h1>Inscription </h1>
     </header>
 
     <main>
       <form th:action="@{/InscriptionParticipant}" th:object="${participantEvent}" method="post" >
-        <div class="EventParticipationForm-introduction">
+        <div class="ParticipantForm-introduction">
           <p>Je souhaite m'inscrire à l'évènement <span th:text="${event.title}"></span></p>
           <p>qui a lieu
             <span th:if="${#temporals.format(event.start_date, 'yyyyMMdd')} == ${#temporals.format(event.end_date, 'yyyyMMdd')}">
@@ -55,7 +55,7 @@
           </p>
         </div>
 
-        <div class="EventParticipationForm-informations">
+        <div class="ParticipantForm-information">
           <p>Informations personnelles :</p>
           <input type="text" th:field="${participant.firstname}" readonly/>
           <input type="text" th:field="${participant.lastname}" readonly/>

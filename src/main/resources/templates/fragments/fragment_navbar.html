@@ -27,7 +27,7 @@
                         <span sec:authorize="!hasRole('ADMIN')">
                             Bienvenue <span sec:authentication="name"></span> ! |&nbsp;
                             <a th:href="@{/ListeParticipations/{username}(username=${#authentication.getName()})}">Mes événements</a> |
-                            <a th:href="@{/modificationMdp}">Modifier son mot de passe</a> |
+                            <a th:href="@{/FicheInfoParticipant/{username}(username=${#authentication.getName()})}">Mes informations</a> |&nbsp;
                             <a th:href="@{/deconnexion}">Se déconnecter</a>
                         </span>
                         <span sec:authorize="hasRole('ADMIN')">

@@ -1,10 +1,7 @@
 package fr.simplon.projetlemoulin.ClientController;
 
 import fr.simplon.projetlemoulin.Entities.Participant;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -45,5 +42,38 @@ public class ParticipantClientController {
         ResponseEntity<Participant> participantResponse = restTemplate.postForEntity(Url, participantRequest, Participant.class);
         return "redirect:/programmation";
     }
+
+
+    @GetMapping("/FicheInfoParticipant/{username}")
+    public String displayUpdateParticipantForm(Model model, @PathVariable String username){
+        this.restTemplate = new RestTemplate();
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        username = authentication.getName();
+        String url="http://localhost:8085/rest/participants/{username}";
+        ResponseEntity<Participant> response = restTemplate.getForEntity(url, Participant.class, username);
+        Participant participant = response.getBody();
+        if (participant != null) {
+            model.addAttribute("participant", participant);
+            return "membres/ficheInfoParticipant";
+        }else{
+            return "redirect:/InfoParticipant/{username}";
+        }
+    }
+
+    @PostMapping("/ModificationInfoParticipant/{username}")
+    public String updateParticipantInfo (@ModelAttribute("participant")Participant participant, @PathVariable String username, Model model) {
+        this.restTemplate = new RestTemplate();
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        username = authentication.getName();
+        String url = "http://localhost:8085/rest/participants/{id}";
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<Participant> request = new HttpEntity<>(participant, headers);
+        ResponseEntity<Participant> response = restTemplate.exchange(url, HttpMethod.POST, request, Participant.class, username);
+
+        model.addAttribute("Message", "La mise à jour de vos coordonnées a bien été enregistrée.");
+        return "message";
+    }
+
 
 }

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/css/styleMoulin.css">
+  <link rel="stylesheet" href="/css/styleNavbar.css">
+  <link rel="stylesheet" href="/css/styleFormulaireParticipant.css">
+  <title>Modification Information Participant</title>
+</head>
+
+<body>
+<header class="ParticipantForm-header">
+  <div th:replace="~{fragments/fragment_navbar :: fragment_navbar}" ></div>
+  <h1>Mes Informations </h1>
+</header>
+
+<main>
+  <form th:action="@{/ModificationInfoParticipant/{username}}" th:object="${participant}" method="post" >
+    <div class="ParticipantForm-information">
+      <h5>VOS COORDONNEES</h5>
+      <p>Vous pouvez modifier vos données de contact en saisissant vos nouvelles coordonnées.</p>
+      <input type="text" th:field="${participant.firstname}" />
+      <input type="text" th:field="${participant.lastname}" />
+      <input type="text" th:field="${participant.phone}" />
+      <input type="email" th:field="${participant.email}" />
+      <input type="number" th:field="${participant.zip_code}" />
+      <input type="hidden" th:field="${participant.username}" th:value="${#authentication.getName()}" readonly/>
+      <br>
+      <button class="confirmation-button" type="submit">J'enregistre la mise à jour</button>
+    </div>
+    <div class="ParticipantForm-updatePassword">
+      <p>Pour modifier votre mot de passe, c'est par ici: <a th:href="@{/modificationMdp}">Changer de mot de passe</a></p>
+    </div>
+  </form>
+</main>
+</body>
+</html>
