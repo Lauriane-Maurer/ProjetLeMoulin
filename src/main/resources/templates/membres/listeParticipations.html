@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/css/styleMoulin.css">
+  <link rel="stylesheet" href="/css/styleNavbar.css">
+  <link rel="stylesheet" href="/css/styleListe.css">
+  <title>ListeParticipations</title>
+</head>
+
+<body>
+
+<header class="List-header">
+  <div th:replace="~{fragments/fragment_navbar :: fragment_navbar}" ></div>
+  <h1>Mes évènements</h1>
+</header>
+
+<main class="List-main">
+  <p>Liste des événements auxquels vous êtes inscrit :</p>
+
+  <table class="List-table">
+    <thead>
+    <tr>
+      <th class="column-status"></th>
+      <th class="column">Titre</th>
+      <th class="column-description">Description</th>
+      <th class="column">Date et heure de debut</th>
+      <th class="column">Date et heure de fin</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <th:block th:each="participantEvent : ${participantEvents}">
+      <tr>
+        <td><img class="image-status" th:src="@{${participantEvent.getEvent().getStart_date() < #temporals.createNow()} ? '/photos/closed.png' : '/photos/open.png'}"></td>
+        <td class="cell" th:text="${participantEvent.getEvent().getTitle()}"></td>
+        <td class="cell" th:text="${participantEvent.getEvent().getDescription()}"></td>
+        <td class="cell" th:text="${participantEvent.getEvent().getStart_date()}"></td>
+        <td class="cell" th:text="${participantEvent.getEvent().getEnd_date()}"></td>
+        <td>
+          <button class="action-button" type="button" id="delete-button" th:onclick="|confirmDeletion(${participantEvent.id}); |">Annuler</button>
+        </td>
+      </tr>
+    </th:block>
+    </tbody>
+  </table>
+
+</main>
+</body>
+
+<script src="/Javascript/popUpConfirmation.js"></script>
+
+</html>

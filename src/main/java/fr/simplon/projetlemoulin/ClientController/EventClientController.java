@@ -65,7 +65,7 @@ public class EventClientController {
     }
 
     @GetMapping("/evenements/{id}")
-    public String getEvent(Model model, @PathVariable Long id) {
+    public String getEventById(Model model, @PathVariable Long id) {
         this.restTemplate = new RestTemplate();
         String url = "http://localhost:8085/rest/events/{id}";
         ResponseEntity<Event> response = restTemplate.getForEntity(url, Event.class, id);

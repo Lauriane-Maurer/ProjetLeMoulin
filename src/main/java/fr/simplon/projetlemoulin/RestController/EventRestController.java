@@ -128,7 +128,7 @@ public class EventRestController {
 
 
     @PostMapping("/rest/DecrementAvailablePlaces/{id}")
-    public Event decremenetAvailablePlaces(@RequestBody Event newEvent, @PathVariable Long id) {
+    public Event decrementAvailablePlaces(@RequestBody Event newEvent, @PathVariable Long id) {
         return repo.findById(id)
                 .map(event -> {
                     event.decrementAvailablePlaces();
@@ -139,5 +139,7 @@ public class EventRestController {
                     return repo.save(newEvent);
                 });
     }
+
+
 }
 

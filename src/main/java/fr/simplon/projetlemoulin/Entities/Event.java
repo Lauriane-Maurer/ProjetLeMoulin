@@ -192,7 +192,7 @@ public class Event {
         }
     }
 
-    public void incrementPlacesRestantes() {
+    public void incrementAvailablePlaces() {
         if (this.available_places != null) {
             this.available_places++;
         }
