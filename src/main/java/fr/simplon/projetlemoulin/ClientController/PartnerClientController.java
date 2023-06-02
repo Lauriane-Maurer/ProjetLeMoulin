@@ -5,10 +5,7 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
@@ -110,4 +107,27 @@ public class PartnerClientController {
         return "admin/listePartenairesAdmin";
     }
 
+
+    @GetMapping("/InfoPartenaire/{id}")
+    public String displayUpdatePartnerForm(Model model, @PathVariable Long id){
+        this.restTemplate = new RestTemplate();
+        String url="http://localhost:8085/rest/partners/{id}";
+        ResponseEntity<Partner> response = restTemplate.getForEntity(url, Partner.class, id);
+        Partner partner = response.getBody();
+        model.addAttribute("partner", partner);
+        return "admin/formulaireModifPartenaire";
+    }
+
+    @PostMapping("MAJPartenaire/{id}")
+    public String updatePartner (@ModelAttribute("organisme") Partner partner, @PathVariable Long id, Model model) {
+        this.restTemplate = new RestTemplate();
+        String url = "http://localhost:8085/rest/updatePartner/{id}";
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<Partner> request = new HttpEntity<>(partner, headers);
+        ResponseEntity<Partner> response = restTemplate.exchange(url, HttpMethod.PUT, request, Partner.class, id);
+
+        model.addAttribute("Message", "Les données de l'organisme partenaire ont bien été mises à jour.");
+        return "message";
+    }
 }
