@@ -1,31 +1,39 @@
 <!DOCTYPE html>
 <html lang="fr" xmlns:th="http://www.thymeleaf.org">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="/css/styleMoulin.css">
   <link rel="stylesheet" href="/css/styleFormulaireCreation.css">
   <link rel="stylesheet" href="/css/styleNavbar.css">
-  <title>Formulaire de Modification d'un évènement</title>
+  <title>Création d'un nouvel évènement</title>
 </head>
 
 <body>
 
 <header class="createForm-header">
   <div th:replace="~{fragments/fragment_navbar :: fragment_navbar}" ></div>
-  <h1>Modifier un évènement</h1>
+  <h1>Formulaire Evenement</h1>
 </header>
 
 <main>
-  <form class="createForm-form" th:action="@{/ModificationEvenement/{id}(id=${event.id})}" th:object="${event}" method="post" >
-    <p class="createForm-introduction"></p>
+  <form class="createForm-form" th:object="${event}" method="post" >
+    <p class="createForm-introduction">Pour créer un nouvel évènement, merci de compléter le formulaire ci-dessous.</p>
     <div class="createForm-information">
 
       <div class="form-section">
         <h5>Présentation de l'évènement</h5>
-        <input class="form-item" type="text" th:field="*{type}" required/>
-        <input class="form-item" type="text" th:field="*{title}" required/>
-        <textarea rows="4" cols="50" class="form-item" type="text" th:field="*{description}" required/></textarea>
+        <select class="form-item-select" type="text" th:field="*{type}" placeholder="Type" required/>
+        <option value="Atelier">Atelier</option>
+        <option value="Conférence">Conférence</option>
+        <option value="Animation culturelle">Animation culturelle</option>
+        <option value="Marché">Marché</option>
+        <option value="Stage">Stage</option>
+        <option value="Rencontre">Rencontre</option>
+        </select>
+        <input class="form-item" type="text" th:field="*{title}" placeholder="Titre" required/>
+        <textarea rows="4" cols="50" class="form-item" type="text" th:field="*{description}" placeholder="Description" required/></textarea>
         <select class="form-item-select" id="photo" name="photo" th:field="*{photo}">
           <option value="/photos/beachyoga.PNG">Beach Yoga</option>
           <option value="/photos/cuisine1.jpg">Cuisine 1</option>
@@ -37,13 +45,14 @@
           <option value="/photos/schemamoulin.PNG">schemamoulin</option>
           <option value="/photos/atelierphoto.PNG">atelierphoto</option>
         </select>
+
       </div>
 
       <div class="form-section">
         <h5>Date & heure de l'évènement</h5>
-        <input class="form-item" type="text" th:field="*{start_date}" required/>
+        <input class="form-item" type="datetime-local" th:field="*{start_date}" placeholder="Date/heure de début" required/>
         <span class="error" th:if="${#fields.hasErrors('start_date')}" th:errors="*{start_date}"></span>
-        <input class="form-item" type="text" th:field="*{end_date}" required/>
+        <input class="form-item" type="datetime-local" th:field="*{end_date}" placeholder="Date/heure de fin" required/>
         <span class="error" th:if="${#fields.hasErrors('end_date')}" th:errors="*{end_date}"></span>
       </div>
 
@@ -54,17 +63,13 @@
           <option value="1" th:selected="${event.limit_places} == true">OUI</option>
           <option value="0" th:selected="${event.limit_places} == false">NON</option>
         </select>
-        <p id="total_places_section-p">Nombre de places ouvertes</p>
-        <input  id="total_places_section" class="form-item" type="number" th:field="*{total_places}" />
-        <p id="available_places_section-p">Nombre de places restantes</p>
-        <input  id="available_places_section" class="form-item" type="number" th:field="*{available_places}" />
-        <p>Tarif</p>
-        <input class="form-item" type="number" th:field="*{price}" />
+        <input id="total_places_section" class="form-item" type="number" th:field="*{total_places}" placeholder="Nb_places ouvertes" />
+        <input class="form-item" type="number" th:field="*{price}" placeholder="Tarif"  />
       </div>
 
       <div class="form-section">
         <h5>Organisateur.s</h5>
-        <input class="form-item" type="text" th:field="*{speaker}" />
+        <input class="form-item" type="text" th:field="*{speaker}" placeholder="Intervenant.e.s"/>
         <div class="form-item checkbox">
           <div th:each="partner : ${partners}">
             <input type="checkbox" th:field="*{partners}" th:value="${partner.id}" />
@@ -76,8 +81,11 @@
       <input type="hidden" th:field="*{id}" />
       <input type="hidden" th:field="*{available_places}" />
 
+
     </div>
+
     <input class="creation-button" type="submit" value="Enregistrer"/>
+
   </form>
 </main>
 </body>

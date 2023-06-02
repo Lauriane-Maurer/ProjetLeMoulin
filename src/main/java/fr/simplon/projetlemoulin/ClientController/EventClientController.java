@@ -92,6 +92,43 @@ public class EventClientController {
     }
 
 
+    @GetMapping("/creationEvenement")
+    public String displayEventForm(Model model) {
+        this.restTemplate = new RestTemplate();
+        Event event = new Event();
+        model.addAttribute("event", event);
+        String url = "http://localhost:8085/rest/partners";
+        ResponseEntity<List<Partner>> response = restTemplate.exchange(
+                url,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<Partner>>() {
+                });
+        List<Partner> partners = response.getBody();
+        model.addAttribute("partners", partners);
+        return "admin/formulaireEvenement";
+    }
+
+
+    @PostMapping("/creationEvenement")
+    public String addEvent(@ModelAttribute("event") @Valid Event event, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            // Gérer les erreurs de validation ici
+            return "admin/formulaireEvenement";
+        } else {
+            this.restTemplate = new RestTemplate();
+            String url = "http://localhost:8085/rest/events";
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            HttpEntity<Event> request = new HttpEntity<>(event, headers);
+            ResponseEntity<Event> response = restTemplate.postForEntity(url, request, Event.class);
+
+            model.addAttribute("Message", "L'évènement a bien été créé.");
+            return "message";
+        }
+    }
+
+
     @GetMapping("/formulaireModificationEvenement/{id}")
     public String displayUpdateEventForm(Model model, @PathVariable Long id){
         this.restTemplate = new RestTemplate();
@@ -113,7 +150,7 @@ public class EventClientController {
 
 
     @PostMapping("ModificationEvenement/{id}")
-    public String updateEvent (@ModelAttribute("event") @Valid Event event, BindingResult bindingResult, @PathVariable Long id, Model model) {
+    public String updateEvent(@ModelAttribute("event") @Valid Event event, BindingResult bindingResult, @PathVariable Long id, Model model) {
         if (bindingResult.hasErrors()) {
             // Gérer les erreurs de validation ici
             return "admin/formulaireModifEvenement";
@@ -129,5 +166,19 @@ public class EventClientController {
             return "message";
         }
     }
+
+
+
+    @GetMapping ("supprimerEvenement/{id}")
+    public String deleteEvent(Model model, @PathVariable Long id){
+        this.restTemplate = new RestTemplate();
+        String url="http://localhost:8085/rest/events/{id}";
+        restTemplate.delete(url, id);
+
+        model.addAttribute("Message", "L'évènement a bien été supprimé.");
+        return "message";
+    }
+
+
 
 }
