@@ -6,6 +6,8 @@ import org.springframework.http.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
@@ -70,5 +72,28 @@ public class PartnerClientController {
         ResponseEntity<List<Partner>> response = restTemplate.exchange("http://localhost:8085/rest/partnersLocation", HttpMethod.GET, entity, new ParameterizedTypeReference<List<Partner>>() {});
         return response.getBody();
     }
+
+
+    @GetMapping("/formulairePartenaire")
+    public String displayPartnerForm(Model model) {
+        this.restTemplate = new RestTemplate();
+        Partner partner = new Partner();
+        model.addAttribute("partner", partner);
+        return "admin/formulairePartenaire";
+    }
+
+    @PostMapping("/AjouterPartenaire")
+    public String addPartner(@ModelAttribute("partner") Partner partner, Model model) {
+        this.restTemplate = new RestTemplate();
+        String url = "http://localhost:8085/rest/partners";
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<Partner> request = new HttpEntity<>(partner, headers);
+        ResponseEntity<Partner> response = restTemplate.postForEntity(url, request, Partner.class);
+
+        model.addAttribute("Message", "L'organisme partenaire a bien été ajouté.");
+        return "message";
+    }
+
 
 }

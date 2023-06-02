@@ -82,7 +82,7 @@ form{
 }
 
 
-/*---------------------style for forumulaireModifAdmin------------------------------------*/
+/*---------------------style for formulaireModifAdmin------------------------------------*/
 
 .checkbox{
     font-size: 10px;
@@ -96,3 +96,11 @@ form{
     margin: 10px;
 }
 
+/*---------------------style for formulairePartenaire------------------------------------*/
+
+
+#mapid{
+    margin: 10px auto 10px auto;
+    height: 300px;
+    width: 70%;
+}
