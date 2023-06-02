@@ -140,6 +140,17 @@
         font-size: 20px;
     }
 
+    .eventDetails-description{
+        padding: 20px 40px;
+    }
+
+    .eventDetails-speaker{
+        padding: 5px 40px;
+    }
+
+    .eventDetails-button{
+        margin: 20px auto 50px 40px;
+    }
 
     .eventDetails-numbers {
         width: 100%;

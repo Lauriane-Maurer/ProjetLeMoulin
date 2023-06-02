@@ -15,7 +15,7 @@
 
 .territoire-main{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     margin: 50px 30px;
     font-family: Arial, sans-serif;
 }
@@ -139,6 +139,10 @@
         padding-right: 5px;
     }
 
+    .search-bar{
+        margin-right: 30px;
+    }
+
     .territoire-map{
         width: 100%;
         flex-direction: column;
@@ -163,13 +167,32 @@
         overflow-y:scroll ;
     }
 
-
-
 }
 
 @media (max-width: 330px) {
 
     .territoire-header h1{
         font-size: 30px;
+    }
+
+    .territoire-main{
+        margin: 5px 20px;
+    }
+
+    .search-bar{
+        margin: 10px auto 10px 20px;
+        font-size: 10px;
+    }
+
+    #mapid{
+        width: 100%;
+        height: 300px;
+        margin: 10px 20px 10px 10px;
+    }
+
+    .table-container{
+        width: 100%;
+        margin: 10px 20px 10px 10px;
+        height: 300px;
     }
 }
