@@ -117,4 +117,32 @@ public class ParticipantEventClientController {
         return "message";
     }
 
+
+    @GetMapping("InscriptionsEvenement/{eventId}")
+    public String displayParticipantsEvent(Model model, @PathVariable Long eventId) {
+        this.restTemplate = new RestTemplate();
+        String EventUrl = "http://localhost:8085/rest/events/{id}";
+        ResponseEntity<Event> response1 = restTemplate.exchange(
+                EventUrl,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<Event>() {},
+                eventId
+        );
+        Event event = response1.getBody();
+        model.addAttribute("event", event);
+
+        String url = "http://localhost:8085/rest/ParticipantsEvent/{eventId}";
+        ResponseEntity<List<ParticipantEvent>> response2 = restTemplate.exchange(
+                url,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<ParticipantEvent>>() {},
+                eventId
+        );
+        List<ParticipantEvent> participantEvents = response2.getBody();
+        model.addAttribute("participantEvents", participantEvents);
+        return "admin/listeInscritsEvenement";
+    }
+
 }

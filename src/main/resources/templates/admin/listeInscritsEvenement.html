@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/css/styleMoulin.css">
+  <link rel="stylesheet" href="/css/styleNavbar.css">
+  <link rel="stylesheet" href="/css/styleListe.css">
+  <title>Liste des inscrits à l'évenement</title>
+</head>
+
+<body>
+<div th:replace="~{fragments/fragment_navbar :: fragment_navbar}" ></div>
+<header class="List-header">
+  <h1>Liste des participants</h1>
+</header>
+
+<main class="List-main">
+  <div class="detailEvent">
+    <p>Evènement : <span th:text="*{event.title}"></span></p>
+    <p>Date :
+      <span th:if="${#temporals.format(event.start_date, 'yyyyMMdd')} == ${#temporals.format(event.end_date, 'yyyyMMdd')}">
+              <span>Le </span>
+              <span th:text="${#temporals.dayOfWeekName(event.start_date)}"></span>
+              <span th:text="${#temporals.day(event.start_date)}"></span>
+              <span th:text="${#temporals.monthName(event.start_date)}"></span>
+              <span>de </span>
+              <span th:text="${#temporals.hour(event.start_date)}"></span>
+              <span>h</span>
+              <span th:text="${#temporals.format(event.start_date, 'mm')}"></span>
+              <span>à </span>
+              <span th:text="${#temporals.hour(event.end_date)}"></span>
+              <span>h</span>
+              <span th:text="${#temporals.format(event.end_date, 'mm')}"></span>
+            </span>
+      <span th:unless="${#temporals.format(event.start_date, 'yyyyMMdd')} == ${#temporals.format(event.end_date, 'yyyyMMdd')}">
+              <span>Du </span>
+              <span th:text="${#temporals.dayOfWeekName(event.start_date)}"></span>
+              <span th:text="${#temporals.day(event.start_date)}"></span>
+              <span th:text="${#temporals.monthName(event.start_date)}"></span> à
+              <span th:text="${#temporals.hour(event.start_date)}"></span>
+              <span>h</span>
+              <span th:text="${#temporals.format(event.start_date, 'mm')}"></span>
+              <span>au </span>
+              <span th:text="${#temporals.dayOfWeekName(event.end_date)}"></span>
+              <span th:text="${#temporals.day(event.end_date)}"></span>
+              <span th:text="${#temporals.monthName(event.end_date)}"></span> à
+              <span th:text="${#temporals.hour(event.end_date)}"></span>
+              <span>h</span>
+              <span th:text="${#temporals.format(event.end_date, 'mm')}"></span>
+            </span>
+    </p>
+    <br>
+    <p th:if="(${event.total_places} != null)">
+    <p>Places ouvertes : <span th:text="*{event.total_places}"></span></p>
+    <p>Places encore disponibles : <span th:text="*{event.available_places}"></span></p>
+    </p>
+  </div>
+  <table class="List-table">
+
+    <thead>
+    <tr>
+      <th class="column">Nom</th>
+      <th class="column">Prénom</th>
+      <th class="column">Email</th>
+      <th class="column">Code Postal</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <th:block th:each="participantEvent : ${participantEvents}">
+      <tr>
+        <td class="cell" th:text="${participantEvent.getParticipant().getFirstname()}"></td>
+        <td class="cell" th:text="${participantEvent.getParticipant().getLastname()}"></td>
+        <td class="cell" th:text="${participantEvent.getParticipant().getEmail()}"></td>
+        <td class="cell" th:text="${participantEvent.getParticipant().getZip_code()}"></td>
+      </tr>
+    </th:block>
+    </tbody>
+
+  </table>
+</main>
+
+</body>
+
+</html>

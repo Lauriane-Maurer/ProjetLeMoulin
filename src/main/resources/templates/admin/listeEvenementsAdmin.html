@@ -24,7 +24,7 @@
         <th class="column-title">Titre</th>
         <th class="column-other">Date de début</th>
         <th class="column-other">Date de fin</th>
-
+        <th></th>
         <th></th>
         <th></th>
       </tr>
@@ -36,7 +36,7 @@
         <td class="cell" th:text="${event.title}"></td>
         <td class="cell" th:text="${event.start_date}"></td>
         <td class="cell" th:text="${event.end_date}"></td>
-
+        <td><button type="button" class="action-button" th:onclick="|window.location.href= '@{/InscriptionsEvenement/{eventId}(eventId=${event.getId()})}'|">Participants</button></td>
         <td><button type="button" class="action-button" th:onclick="|window.location.href='@{/formulaireModificationEvenement/{id}(id=${event.id})}'|">Modifier</button></td>
         <td><button type="button" class="action-button" th:onclick="|confirmDeletionEvent(${event.id});|">Supprimer</button></td>
       </tr>

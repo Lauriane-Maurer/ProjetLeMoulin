@@ -46,10 +46,6 @@ public class ParticipantEventRestController {
         return repo.findByParticipantId(participantId);
     }
 
-    @GetMapping(path= "/rest/InscritsEvenement/{evenementId}")
-    public List<ParticipantEvent> getParticipantsByEventId(@PathVariable Long eventId) {
-        return repo.findByEventId(eventId);
-    }
 
     @GetMapping("/rest/participantEvent/checkRegistration")
     public boolean checkParticipantRegistration(@RequestParam Long participantId, @RequestParam Long eventId) {
@@ -74,5 +70,12 @@ public class ParticipantEventRestController {
         }
         repo.deleteById(id);
     }
+
+
+    @GetMapping(path= "/rest/ParticipantsEvent/{eventId}")
+    public List<ParticipantEvent> getParticipantsByEventId(@PathVariable Long eventId) {
+        return repo.findByEventId(eventId);
+    }
+
 
 }
