@@ -18,7 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="card">
                         <img src="${event.photo}" alt="${event.title}">
                         <div class="card-content">
-                            <p class="card-date">${event.start_date} - ${event.end_date}</p>
                             <h5 class="card-type">${event.type}</h5>
                             <h3 class="card-title">${event.title}</h3>                                   
                             <button class="card-button" onclick="window.location.href='/evenements/${event.id}'">En savoir plus</button>

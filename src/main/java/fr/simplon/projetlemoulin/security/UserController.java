@@ -125,7 +125,9 @@ public class UserController {
         UserDetails userDetails = new User(user.getLogin(), encodedPassword, roles);
         // Create the account in database with its role
         userDetailsManager.createUser(userDetails);
-        return "redirect:/connexion/login";
+
+        model.addAttribute("Message", "Votre inscription a été réalisée avec succès ! Cliquez sur 'Se Connecter' dans la barre de navigation.");
+        return "message";
     }
 
 

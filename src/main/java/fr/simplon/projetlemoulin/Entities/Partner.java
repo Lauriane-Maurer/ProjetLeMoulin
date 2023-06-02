@@ -27,7 +27,7 @@ public class Partner {
     private Double latitude;
     private Double longitude;
 
-
+    @JsonIgnore
     @ManyToMany
     @JoinTable(name = "event_partner",
             joinColumns = @JoinColumn(name = "event_id"),

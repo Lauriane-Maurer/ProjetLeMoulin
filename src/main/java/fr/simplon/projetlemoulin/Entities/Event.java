@@ -2,8 +2,8 @@ package fr.simplon.projetlemoulin.Entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import org.antlr.v4.runtime.misc.NotNull;
 import jakarta.validation.constraints.Future;
+import jakarta.validation.constraints.NotNull;
 import org.hibernate.annotations.Cascade;
 
 import java.time.LocalDateTime;
@@ -43,7 +43,7 @@ public class Event {
     private List<ParticipantEvent> participantEvents;
 
 
-
+    @JsonIgnore
     @ManyToMany
     @JoinTable(name = "event_partner",
             joinColumns = @JoinColumn(name = "event_id"),

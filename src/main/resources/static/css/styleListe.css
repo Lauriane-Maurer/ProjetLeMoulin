@@ -102,3 +102,44 @@
     font-weight: bold;
     color: black;
 }
+
+/*---------------------style Responsive------------------------------------*/
+
+@media (max-width: 768px) {
+
+    .List-header {
+        height: 100px;
+    }
+
+    .List-header h1 {
+        margin-top:78px;
+        margin-left: 20px;
+        font-size: 25px;
+    }
+
+    .List-main{
+        width: 80%;
+        margin: 5px auto;
+        overflow-x: scroll;
+    }
+
+    .List-table{
+        width: 700px;
+        margin: 50px 5px 70px 5px;
+    }
+
+    .detailEvent {
+        margin-top: 40px;
+    }
+
+    .detailEvent p{
+        margin-left: 10px;
+        font-size: 10px;
+    }
+
+    .detailEvent span{
+        font-size: 10px;
+        font-weight: bold;
+    }
+
+}

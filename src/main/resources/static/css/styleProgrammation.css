@@ -103,3 +103,60 @@
 }
 
 
+/*-------------------------- Responsive  ----------------------------------------*/
+
+@media (max-width: 1290px) {
+    .programming-header h1{
+        font-size: 140px;
+    }
+}
+
+@media (max-width: 820px) {
+    .programming-header h1{
+        font-size: 110px;
+    }
+}
+
+
+@media (max-width: 768px) {
+
+    .programming-header {
+        height: 200px;
+    }
+
+    .programming-header h1 {
+        margin-top: 20px;
+        font-size: 100px;
+    }
+
+    .programming-header h2 {
+        margin-top: 80px;
+        font-size: 20px;
+    }
+
+    .programming-text {
+        margin: 30px 20px;
+        font-size: 12px;
+        text-align: justify;
+    }
+
+    .display-events {
+        justify-content: center;
+        margin: 20px 10px;
+    }
+
+    #listings {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+        margin: 20px 10px;
+        align-items: center;
+    }
+}
+
+@media (max-width: 420px) {
+    .programming-header h1{
+        font-size: 60px;
+    }
+}

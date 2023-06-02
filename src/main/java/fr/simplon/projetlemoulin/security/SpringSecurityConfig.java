@@ -14,45 +14,44 @@ import org.springframework.security.web.SecurityFilterChain;
 
 import javax.sql.DataSource;
 
-
 @Configuration
 @EnableWebSecurity
 public class SpringSecurityConfig  {
 
-        private DataSource dataSource;
+    private DataSource dataSource;
 
-        @Autowired
-        public SpringSecurityConfig(DataSource pDataSource)
-        {
-            dataSource = pDataSource;
-        }
-
-        @Bean
-        public UserDetailsManager users(DataSource dataSource)
-        {
-            return new JdbcUserDetailsManager(dataSource);
-        }
-
-        @Bean
-        public PasswordEncoder passwordEncoder()
-        {
-            return PasswordEncoderFactories.createDelegatingPasswordEncoder();
-        }
-
-        @Bean
-        public SecurityFilterChain filterChain(HttpSecurity http) throws Exception
-        {
-            return http.csrf().disable() // Pour l'instant on désactive la protection CSRF
-                    .authorizeHttpRequests()
-                    .requestMatchers(HttpMethod.GET, "/InscriptionParticipant/**").authenticated()
-                    .requestMatchers("/admin/**").hasRole("ADMIN") //
-                    .anyRequest().permitAll()//
-                    .and()
-                    .formLogin()
-                    .loginPage("/login").permitAll()
-                    .and().passwordManagement(management -> management.changePasswordPage("/change-password"))
-                    .build();
-        }
-
+    @Autowired
+    public SpringSecurityConfig(DataSource pDataSource)
+    {
+        dataSource = pDataSource;
     }
+
+
+
+    @Bean
+    public UserDetailsManager users(DataSource dataSource)
+    {
+        return new JdbcUserDetailsManager(dataSource);
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder()
+    {
+        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+    }
+
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception
+    {
+        return http.csrf().disable() // Pour l'instant on désactive la protection CSRF
+                .authorizeHttpRequests()
+                .anyRequest().permitAll()//
+                .and()
+                .formLogin()
+                .loginPage("/login").permitAll()
+                .and().passwordManagement(management -> management.changePasswordPage("/change-password"))
+                .build();
+    }
+
+}
 

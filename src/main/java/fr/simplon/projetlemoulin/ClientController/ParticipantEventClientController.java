@@ -103,7 +103,8 @@ public class ParticipantEventClientController {
             model.addAttribute("participantEvents", participantEvents);
             return "membres/listeParticipations";
         } else {
-            return "/programmation";
+            model.addAttribute("Message", "Vous n'êtes actuellement inscrit à aucun évènement. Pour participer à un évènement, rendez-vous sur la page 'Programmation' dans la barre de navigation !");
+            return "message";
         }
     }
 

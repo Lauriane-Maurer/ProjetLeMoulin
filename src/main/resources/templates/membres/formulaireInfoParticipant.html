@@ -25,7 +25,7 @@
       <input class="form-item" type="text" th:field="*{lastname}" placeholder="Nom" required/>
       <input class="form-item" type="text" th:field="*{phone}" placeholder="Téléphone" required/>
       <input class="form-item" type="email" th:field="*{email}" placeholder="Email" required/>
-      <input class="form-item" type="number" th:field="*{zip_code}" placeholder="Code postal" required/>
+      <input class="form-item" type="number" th:field="*{zip_code}" placeholder='Code postal' required/>
       <input class="form-item" type="hidden" th:field="*{username}" th:value="${#authentication.getName()}"/>
       <input class="form-item" type="hidden" th:field="*{id}" />
       <input class="form-item" type="hidden" th:field="*{participantEvents}" />

@@ -1,6 +1,7 @@
 
 .territoire-header {
     background-color: #ffba07;
+    width: 100%;
     height: 100px;
 }
 
@@ -11,8 +12,6 @@
     font-size: 40px;
     font-weight: bold;
 }
-
-
 
 .territoire-main{
     display: flex;
@@ -106,3 +105,71 @@
     border-top: solid #cccccc 0.5px;
 }
 
+/*-------------------------- Responsive  ----------------------------------------*/
+
+@media (max-width: 768px) {
+    .territoire-body{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .territoire-header {
+        background-color: #ffba07;
+        height: 100px;
+    }
+
+    .territoire-header h1{
+        font-size: 40px;
+        margin-top:63px;
+        margin-left: 20px;
+    }
+
+    .territoire-main{
+        flex-direction: column;
+    }
+
+    .territoire-title{
+        width: 100%;
+        margin-left: 10px;
+        padding-right: 5px;
+    }
+
+    .territoire-text{
+        width: 100%;
+        padding-right: 5px;
+    }
+
+    .territoire-map{
+        width: 100%;
+        flex-direction: column;
+        justify-content: center;
+        padding-right: 5px;
+        height: auto;
+        margin: 10px;
+    }
+
+    #mapid{
+        width: 80%;
+        height: 300px;
+        margin: 10px auto;
+    }
+
+
+    .table-container{
+        width: 80%;
+        height: 300px;
+        margin: 10px auto;
+        overflow-x:scroll ;
+        overflow-y:scroll ;
+    }
+
+
+
+}
+
+@media (max-width: 330px) {
+
+    .territoire-header h1{
+        font-size: 30px;
+    }
+}
