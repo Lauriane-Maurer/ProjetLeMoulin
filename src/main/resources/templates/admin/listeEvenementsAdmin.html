@@ -25,6 +25,8 @@
         <th class="column-other">Date de début</th>
         <th class="column-other">Date de fin</th>
 
+        <th></th>
+
       </tr>
       </thead>
       <tbody>
@@ -34,6 +36,8 @@
         <td class="cell" th:text="${event.title}"></td>
         <td class="cell" th:text="${event.start_date}"></td>
         <td class="cell" th:text="${event.end_date}"></td>
+
+        <td><button type="button" class="action-button" th:onclick="|window.location.href='@{/formulaireModificationEvenement/{id}(id=${event.id})}'|">Modifier</button></td>
 
       </tr>
       </tbody>

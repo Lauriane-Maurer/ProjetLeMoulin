@@ -1,13 +1,14 @@
 package fr.simplon.projetlemoulin.ClientController;
 
 import fr.simplon.projetlemoulin.Entities.Event;
+import fr.simplon.projetlemoulin.Entities.Partner;
+import jakarta.validation.Valid;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
@@ -88,6 +89,45 @@ public class EventClientController {
         List<Event> events = response.getBody();
         model.addAttribute("events", events);
         return "admin/listeEvenementsAdmin";
+    }
+
+
+    @GetMapping("/formulaireModificationEvenement/{id}")
+    public String displayUpdateEventForm(Model model, @PathVariable Long id){
+        this.restTemplate = new RestTemplate();
+        String url="http://localhost:8085/rest/events/{id}";
+        ResponseEntity<Event> response = restTemplate.getForEntity(url, Event.class, id);
+        Event event = response.getBody();
+        model.addAttribute("event", event);
+        String url2 = "http://localhost:8085/rest/partners";
+        ResponseEntity<List<Partner>> response2 = restTemplate.exchange(
+                url2,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<Partner>>() {
+                });
+        List<Partner> partners = response2.getBody();
+        model.addAttribute("partners", partners);
+        return "admin/formulaireModifEvenement";
+    }
+
+
+    @PostMapping("ModificationEvenement/{id}")
+    public String updateEvent (@ModelAttribute("event") @Valid Event event, BindingResult bindingResult, @PathVariable Long id, Model model) {
+        if (bindingResult.hasErrors()) {
+            // Gérer les erreurs de validation ici
+            return "admin/formulaireModifEvenement";
+        } else {
+            this.restTemplate = new RestTemplate();
+            String url = "http://localhost:8085/rest/UpdateEvent/{id}";
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            HttpEntity<Event> request = new HttpEntity<>(event, headers);
+            ResponseEntity<Event> response = restTemplate.exchange(url, HttpMethod.POST, request, Event.class, id);
+
+            model.addAttribute("Message", "Les mises à jour de l'évènement ont bien été enregistrées.");
+            return "message";
+        }
     }
 
 }

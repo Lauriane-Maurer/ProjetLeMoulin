@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/css/styleMoulin.css">
+  <link rel="stylesheet" href="/css/styleFormulaireCreation.css">
+  <link rel="stylesheet" href="/css/styleNavbar.css">
+  <title>Formulaire de Modification d'un évènement</title>
+</head>
+
+<body>
+
+<header class="createForm-header">
+  <div th:replace="~{fragments/fragment_navbar :: fragment_navbar}" ></div>
+  <h1>Modifier un évènement</h1>
+</header>
+
+<main>
+  <form class="createForm-form" th:action="@{/ModificationEvenement/{id}(id=${event.id})}" th:object="${event}" method="post" >
+    <p class="createForm-introduction"></p>
+    <div class="createForm-information">
+
+      <div class="form-section">
+        <h5>Présentation de l'évènement</h5>
+        <input class="form-item" type="text" th:field="*{type}" required/>
+        <input class="form-item" type="text" th:field="*{title}" required/>
+        <textarea rows="4" cols="50" class="form-item" type="text" th:field="*{description}" required/></textarea>
+        <select class="form-item-select" id="photo" name="photo" th:field="*{photo}">
+          <option value="/photos/beachyoga.PNG">Beach Yoga</option>
+          <option value="/photos/cuisine1.jpg">Cuisine 1</option>
+          <option value="/photos/dome.PNG">Dome</option>
+          <option value="/photos/fresquebiodiversite.PNG">fresquebiodiversite</option>
+          <option value="/photos/marchedulittorale.PNG">marchedulittorale</option>
+          <option value="/photos/moulindenuit.PNG">moulindenuit</option>
+          <option value="/photos/Photostage1.PNG">Photostage1</option>
+          <option value="/photos/schemamoulin.PNG">schemamoulin</option>
+          <option value="/photos/atelierphoto.PNG">atelierphoto</option>
+        </select>
+      </div>
+
+      <div class="form-section">
+        <h5>Date & heure de l'évènement</h5>
+        <input class="form-item" type="text" th:field="*{start_date}" required/>
+        <span class="error" th:if="${#fields.hasErrors('start_date')}" th:errors="*{start_date}"></span>
+        <input class="form-item" type="text" th:field="*{end_date}" required/>
+        <span class="error" th:if="${#fields.hasErrors('end_date')}" th:errors="*{end_date}"></span>
+      </div>
+
+      <div class="form-section">
+        <h5>Autres informations</h5>
+        <p>Nombre limité de places :</p>
+        <select id="limit_places_select" class="form-item-select" th:field="*{limit_places}" onchange="toggleTotalPlaces()">
+          <option value="1" th:selected="${event.limit_places} == true">OUI</option>
+          <option value="0" th:selected="${event.limit_places} == false">NON</option>
+        </select>
+        <p id="total_places_section-p">Nombre de places ouvertes</p>
+        <input  id="total_places_section" class="form-item" type="number" th:field="*{total_places}" />
+        <p id="available_places_section-p">Nombre de places restantes</p>
+        <input  id="available_places_section" class="form-item" type="number" th:field="*{available_places}" />
+        <p>Tarif</p>
+        <input class="form-item" type="number" th:field="*{price}" />
+      </div>
+
+      <div class="form-section">
+        <h5>Organisateur.s</h5>
+        <input class="form-item" type="text" th:field="*{speaker}" />
+        <div class="form-item checkbox">
+          <div th:each="partner : ${partners}">
+            <input type="checkbox" th:field="*{partners}" th:value="${partner.id}" />
+            <span th:text="${partner.name}"></span>
+          </div>
+        </div>
+      </div>
+
+      <input type="hidden" th:field="*{id}" />
+      <input type="hidden" th:field="*{available_places}" />
+
+    </div>
+    <input class="creation-button" type="submit" value="Enregistrer"/>
+  </form>
+</main>
+</body>
+<script src="/Javascript/limitAvailablePlaces.js"></script>
+</html>
