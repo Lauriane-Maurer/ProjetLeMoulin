@@ -26,7 +26,7 @@
         <th class="column-other">Date de fin</th>
 
         <th></th>
-
+        <th></th>
       </tr>
       </thead>
       <tbody>
@@ -38,11 +38,12 @@
         <td class="cell" th:text="${event.end_date}"></td>
 
         <td><button type="button" class="action-button" th:onclick="|window.location.href='@{/formulaireModificationEvenement/{id}(id=${event.id})}'|">Modifier</button></td>
-
+        <td><button type="button" class="action-button" th:onclick="|confirmDeletionEvent(${event.id});|">Supprimer</button></td>
       </tr>
       </tbody>
     </table>
   </div>
 </main>
 </body>
+<script src="/Javascript/popUpConfirmation.js"></script>
 </html>
