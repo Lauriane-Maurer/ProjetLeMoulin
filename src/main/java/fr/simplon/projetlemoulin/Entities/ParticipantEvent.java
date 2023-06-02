@@ -1,5 +1,6 @@
 package fr.simplon.projetlemoulin.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -10,9 +11,11 @@ public class ParticipantEvent {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
     @ManyToOne
     @JoinColumn(name = "id_participant", referencedColumnName = "id")
     private Participant participant;
+
 
     @ManyToOne
     @JoinColumn(name = "id_evenement", referencedColumnName = "id")

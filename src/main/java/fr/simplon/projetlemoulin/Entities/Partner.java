@@ -1,5 +1,6 @@
 package fr.simplon.projetlemoulin.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
@@ -26,6 +27,7 @@ public class Partner {
     private Double latitude;
     private Double longitude;
 
+
     @ManyToMany
     @JoinTable(name = "event_partner",
             joinColumns = @JoinColumn(name = "event_id"),
@@ -35,7 +37,8 @@ public class Partner {
     public Partner() {
     }
 
-    public Partner(String name, String activity, String description, String adress, String town, int zip_code, String url, Double latitude, Double longitude, List<Event> event) {
+    public Partner(Long id, String name, String activity, String description, String adress, String town, int zip_code, String url, Double latitude, Double longitude, List<Event> event) {
+        this.id = id;
         this.name = name;
         this.activity = activity;
         this.description = description;

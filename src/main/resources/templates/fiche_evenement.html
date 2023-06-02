@@ -56,6 +56,12 @@
           </p>
           <h1 th:text="*{event.title}"></h1>
           <p class="eventDetails-description" th:text="*{event.description}"></p>
+          <p class="eventDetails-speaker">Partenaire.s :
+            <span th:each="partner, iterStat : ${event.partners}">
+                        <span th:text="${partner.name}"></span>
+                        <span th:if="${!iterStat.last}">, </span>
+                    </span>
+          </p>
           <p class="eventDetails-speaker"> Intervenant.e.s :
             <span th:text="*{event.speaker}"></span>
           </p>

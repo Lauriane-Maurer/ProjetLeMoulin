@@ -42,6 +42,8 @@ public class Event {
     @Cascade(org.hibernate.annotations.CascadeType.DELETE)
     private List<ParticipantEvent> participantEvents;
 
+
+
     @ManyToMany
     @JoinTable(name = "event_partner",
             joinColumns = @JoinColumn(name = "event_id"),
@@ -51,7 +53,8 @@ public class Event {
     public Event() {
     }
 
-    public Event(String type, String title, String description, LocalDateTime start_date, LocalDateTime end_date, boolean limit_places, Integer total_places, Integer available_places, Double price, String speaker, String photo, List<ParticipantEvent> participantEvents, List<Partner> partners) {
+    public Event(Long id, String type, String title, String description, LocalDateTime start_date, LocalDateTime end_date, boolean limit_places, Integer total_places, Integer available_places, Double price, String speaker, String photo, List<ParticipantEvent> participantEvents, List<Partner> partners) {
+        this.id = id;
         this.type = type;
         this.title = title;
         this.description = description;
