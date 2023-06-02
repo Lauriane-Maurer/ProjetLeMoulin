@@ -31,6 +31,7 @@
                             <a th:href="@{/deconnexion}">Se déconnecter</a>
                         </span>
                         <span sec:authorize="hasRole('ADMIN')">
+                            <a th:href="@{/admin/gestionnaireAdmin}">Page Admin</a> |&nbsp;
                             <a th:href="@{/deconnexion}">Se déconnecter</a>
                         </span>
                     </span>

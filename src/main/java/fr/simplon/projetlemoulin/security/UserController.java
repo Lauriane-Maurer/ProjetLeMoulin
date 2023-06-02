@@ -174,4 +174,10 @@ public class UserController {
         }
     }
 
+
+    @GetMapping("/admin/gestionnaireAdmin")
+    public String displayAdminPage(Model model) {
+        return "admin/pageAdmin";
+    }
+
 }

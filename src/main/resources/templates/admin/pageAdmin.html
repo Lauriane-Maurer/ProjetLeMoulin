@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/css/styleMoulin.css">
+  <link rel="stylesheet" href="/css/styleNavbar.css">
+  <link rel="stylesheet" href="/css/stylePageAdmin.css">
+  <title>Gestionnaire Administrateur</title>
+</head>
+
+<body>
+<div th:replace="~{fragments/fragment_navbar :: fragment_navbar}" ></div>
+<header class="pageAdmin-header">
+  <h1> Page Administrateur</h1>
+</header>
+
+<main class="pageAdmin-main">
+  <p> Que souhaitez-vous faire?</p>
+
+  <div class="pageAdmin-choice">
+    <div class="choice-management">
+      <h5>Gestion des évènements</h5>
+      <ul>
+
+      </ul>
+    </div>
+    <div class="choice-management">
+      <h5>Gestion des organismes partenaires</h5>
+      <ul>
+
+      </ul>
+    </div>
+  </div>
+</main>
+
+</body>
+
+</html>
