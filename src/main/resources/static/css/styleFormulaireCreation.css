@@ -34,21 +34,18 @@ form{
 .form-section{
     display: flex;
     flex-direction: column;
+    justify-content: center;
     border: solid #cccccc 1px;
     margin: 10px;
     padding: 10px;
     box-shadow: 0 0 5px rgba(0,0,0,.3);
 }
 
-
-
 .form-section h5{
     font-size: 12px;
     font-weight: bold;
     text-align: center;
 }
-
-
 
 .form-section p{
     font-size: 8px;
@@ -103,4 +100,47 @@ form{
     margin: 10px auto 10px auto;
     height: 300px;
     width: 70%;
+}
+
+/*---------------------Responsive------------------------------------*/
+
+@media (max-width: 768px) {
+
+    .createForm-header {
+        height: 130px;
+    }
+
+    .createForm-header h1 {
+        margin-left: 20px;
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 250px) {
+
+    .createForm-header {
+        height: 130px;
+    }
+
+    .createForm-header h1 {
+        margin-left: 10px;
+        font-size: 20px;
+    }
+
+    .form-item{
+        width: 80%;
+        margin: 5px auto;
+        padding: 5px;
+    }
+
+    .form-item-select{
+        width: 85%;
+        margin: 5px auto;
+        padding: 5px;
+    }
+
+    .creation-button{
+        width: 80%;
+        font-size: 8px;
+    }
 }
