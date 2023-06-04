@@ -31,7 +31,7 @@ public class ParticipantClientController {
 
 
     @PostMapping("/InfoParticipant")
-    public String registerInfoParticipant(@ModelAttribute("participant") Participant participant) {
+    public String registerInfoParticipant(@ModelAttribute("participant") Participant participant, Model model) {
         this.restTemplate = new RestTemplate();
 
         // Enregistrer le participant
@@ -40,7 +40,9 @@ public class ParticipantClientController {
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<Participant> participantRequest = new HttpEntity<>(participant, headers);
         ResponseEntity<Participant> participantResponse = restTemplate.postForEntity(Url, participantRequest, Participant.class);
-        return "redirect:/programmation";
+
+        model.addAttribute("Message", "Vos coordonnées ont bien été enregistrées, vous pouvez maintenant vous inscrire à un évènement! Pour modifier vos coordonnées, rendez-vous sur 'Mes information' dans la barre de navigation.");
+        return "message";
     }
 
 

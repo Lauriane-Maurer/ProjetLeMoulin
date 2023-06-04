@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>fr.simplon</groupId>
-    <artifactId>TitreV3</artifactId>
+    <artifactId>ProjetLeMoulin</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>TitreV3</name>
     <description>TitreV3</description>
