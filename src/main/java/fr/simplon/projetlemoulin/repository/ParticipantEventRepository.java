@@ -1,6 +1,6 @@
-package fr.simplon.projetlemoulin.Repository;
+package fr.simplon.projetlemoulin.repository;
 
-import fr.simplon.projetlemoulin.Entities.ParticipantEvent;
+import fr.simplon.projetlemoulin.entities.ParticipantEvent;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

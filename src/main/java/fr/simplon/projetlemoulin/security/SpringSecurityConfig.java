@@ -45,6 +45,7 @@ public class SpringSecurityConfig  {
     {
         return http.csrf().disable() // Pour l'instant on désactive la protection CSRF
                 .authorizeHttpRequests()
+                .requestMatchers("/admin/**").hasRole("ADMIN") //
                 .anyRequest().permitAll()//
                 .and()
                 .formLogin()

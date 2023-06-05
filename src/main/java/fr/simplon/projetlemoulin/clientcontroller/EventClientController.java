@@ -1,7 +1,7 @@
-package fr.simplon.projetlemoulin.ClientController;
+package fr.simplon.projetlemoulin.clientcontroller;
 
-import fr.simplon.projetlemoulin.Entities.Event;
-import fr.simplon.projetlemoulin.Entities.Partner;
+import fr.simplon.projetlemoulin.entities.Event;
+import fr.simplon.projetlemoulin.entities.Partner;
 import jakarta.validation.Valid;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
@@ -13,6 +13,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
+
 /**
  * Controller class for handling client-side event-related requests.
  *
@@ -20,7 +21,6 @@ import java.util.List;
  * requests related to events.
  *
  */
-
 @Controller
 public class EventClientController {
 
@@ -65,6 +65,15 @@ public class EventClientController {
         return response.getBody();
     }
 
+
+
+    /**
+     * Retrieves an event by its id.
+     *
+     * @param model The model used to add the retrieved event.
+     * @param id The identifier of the event to retrieve.
+     * @return The name of the view to display for the event details.
+     */
     @GetMapping("/evenements/{id}")
     public String getEventById(Model model, @PathVariable Long id) {
         this.restTemplate = new RestTemplate();
@@ -76,7 +85,12 @@ public class EventClientController {
     }
 
 
-
+    /**
+     * Displays the management list of events for the admin.
+     *
+     * @param model The model used to add the list of events to be displayed.
+     * @return The name of the view to show the administration list of events.
+     */
     @GetMapping("/admin/listeEvenements")
     public String displayEventsManagementList(Model model){
         this.restTemplate = new RestTemplate();
@@ -92,7 +106,13 @@ public class EventClientController {
     }
 
 
-    @GetMapping("/creationEvenement")
+    /**
+     * Displays the event creation form.
+     *
+     * @param model The model used to add the event object and the list of partners to be displayed for selection in the form.
+     * @return The name of the view to show the event creation form.
+     */
+    @GetMapping("/admin/creationEvenement")
     public String displayEventForm(Model model) {
         this.restTemplate = new RestTemplate();
         Event event = new Event();
@@ -110,10 +130,17 @@ public class EventClientController {
     }
 
 
-    @PostMapping("/creationEvenement")
+    /**
+     * Adds a new event by processing the event creation form submission.
+     *
+     * @param event The event object to be added, obtained from the form data.
+     * @param bindingResult The binding result object that holds the validation errors, if any.
+     * @param model The model used to add attributes for the view.
+     * @return The name of the view to display a success message if the event is created, or to show the event creation form with validation errors.
+     */
+    @PostMapping("/admin/creationEvenement")
     public String addEvent(@ModelAttribute("event") @Valid Event event, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            // Gérer les erreurs de validation ici
             return "admin/formulaireEvenement";
         } else {
             this.restTemplate = new RestTemplate();
@@ -129,7 +156,14 @@ public class EventClientController {
     }
 
 
-    @GetMapping("/formulaireModificationEvenement/{id}")
+    /**
+     * Displays the form for updating an existing event.
+     *
+     * @param model The model used to add the event object and the list of partners to be displayed for selection in the form.
+     * @param id The identifier of the event to be updated.
+     * @return The name of the view to show the event modification form.
+     */
+    @GetMapping("/admin/formulaireModificationEvenement/{id}")
     public String displayUpdateEventForm(Model model, @PathVariable Long id){
         this.restTemplate = new RestTemplate();
         String url="http://localhost:8085/rest/events/{id}";
@@ -149,7 +183,16 @@ public class EventClientController {
     }
 
 
-    @PostMapping("ModificationEvenement/{id}")
+    /**
+     * Updates an existing event by processing the event modification form submission.
+     *
+     * @param event The event object with updated data obtained from the form.
+     * @param bindingResult The binding result object that holds the validation errors, if any.
+     * @param id The identifier of the event to be updated.
+     * @param model The model used to add attributes for the view.
+     * @return The name of the view to display a success message if the event is updated, or to show the event modification form with validation errors.
+     */
+    @PutMapping("/admin/ModificationEvenement/{id}")
     public String updateEvent(@ModelAttribute("event") @Valid Event event, BindingResult bindingResult, @PathVariable Long id, Model model) {
         if (bindingResult.hasErrors()) {
             // Gérer les erreurs de validation ici
@@ -160,7 +203,7 @@ public class EventClientController {
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
             HttpEntity<Event> request = new HttpEntity<>(event, headers);
-            ResponseEntity<Event> response = restTemplate.exchange(url, HttpMethod.POST, request, Event.class, id);
+            ResponseEntity<Event> response = restTemplate.exchange(url, HttpMethod.PUT, request, Event.class, id);
 
             model.addAttribute("Message", "Les mises à jour de l'évènement ont bien été enregistrées.");
             return "message";
@@ -168,8 +211,14 @@ public class EventClientController {
     }
 
 
-
-    @GetMapping ("supprimerEvenement/{id}")
+    /**
+     * Deletes an event by its identifier.
+     *
+     * @param model The model used to add attributes for the view.
+     * @param id The identifier of the event to be deleted.
+     * @return The name of the view to display a success message after deleting the event.
+     */
+    @GetMapping ("/admin/supprimerEvenement/{id}")
     public String deleteEvent(Model model, @PathVariable Long id){
         this.restTemplate = new RestTemplate();
         String url="http://localhost:8085/rest/events/{id}";
@@ -178,7 +227,6 @@ public class EventClientController {
         model.addAttribute("Message", "L'évènement a bien été supprimé.");
         return "message";
     }
-
 
 
 }

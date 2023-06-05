@@ -1,6 +1,6 @@
-package fr.simplon.projetlemoulin.ClientController;
+package fr.simplon.projetlemoulin.clientcontroller;
 
-import fr.simplon.projetlemoulin.Entities.Partner;
+import fr.simplon.projetlemoulin.entities.Partner;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.stereotype.Controller;
@@ -71,7 +71,13 @@ public class PartnerClientController {
     }
 
 
-    @GetMapping("/formulairePartenaire")
+    /**
+     * Displays the form for creating a new partner.
+     *
+     * @param model The model used to add attributes for the view.
+     * @return The name of the view to display the partner creation form.
+     */
+    @GetMapping("/admin/formulairePartenaire")
     public String displayPartnerForm(Model model) {
         this.restTemplate = new RestTemplate();
         Partner partner = new Partner();
@@ -79,7 +85,15 @@ public class PartnerClientController {
         return "admin/formulairePartenaire";
     }
 
-    @PostMapping("/AjouterPartenaire")
+
+    /**
+     * Adds a new partner to the system.
+     *
+     * @param partner The partner object containing the details of the partner to be added.
+     * @param model   The model used to add attributes for the view.
+     * @return The name of the view to display a confirmation message.
+     */
+    @PostMapping("/admin/AjouterPartenaire")
     public String addPartner(@ModelAttribute("partner") Partner partner, Model model) {
         this.restTemplate = new RestTemplate();
         String url = "http://localhost:8085/rest/partners";
@@ -93,6 +107,12 @@ public class PartnerClientController {
     }
 
 
+    /**
+     * Displays the list of partners for the administrators.
+     *
+     * @param model The model used to add attributes for the view.
+     * @return The name of the view to display the list of partners for the administrators.
+     */
     @GetMapping("/admin/listePartenaires")
     public String displayPartnersListAdmin(Model model){
         this.restTemplate = new RestTemplate();
@@ -108,7 +128,14 @@ public class PartnerClientController {
     }
 
 
-    @GetMapping("/InfoPartenaire/{id}")
+    /**
+     * Displays the form to update partner information.
+     *
+     * @param model The model used to add attributes for the view.
+     * @param id    The ID of the partner to update.
+     * @return The name of the view to display the form for updating partner information.
+     */
+    @GetMapping("/admin/InfoPartenaire/{id}")
     public String displayUpdatePartnerForm(Model model, @PathVariable Long id){
         this.restTemplate = new RestTemplate();
         String url="http://localhost:8085/rest/partners/{id}";
@@ -118,7 +145,16 @@ public class PartnerClientController {
         return "admin/formulaireModifPartenaire";
     }
 
-    @PostMapping("MAJPartenaire/{id}")
+
+    /**
+     * Updates the data of an existing partner organization.
+     *
+     * @param partner The Partner object containing the new data of the partner organization.
+     * @param id The ID of the partner organization to be updated.
+     * @param model The Model object to add attributes to the view.
+     * @return The name of the view to display a confirmation message.
+     */
+    @PostMapping("/admin/MAJPartenaire/{id}")
     public String updatePartner (@ModelAttribute("organisme") Partner partner, @PathVariable Long id, Model model) {
         this.restTemplate = new RestTemplate();
         String url = "http://localhost:8085/rest/updatePartner/{id}";
@@ -132,7 +168,14 @@ public class PartnerClientController {
     }
 
 
-    @GetMapping ("supprimerPartenaire/{id}")
+    /**
+     * Deletes a partner organization.
+     *
+     * @param model The Model object to add attributes to the view.
+     * @param id The ID of the partner organization to be deleted.
+     * @return The name of the "message" view to display a confirmation message.
+     */
+    @GetMapping ("/admin/supprimerPartenaire/{id}")
     public String deletePartner(Model model, @PathVariable Long id){
         this.restTemplate = new RestTemplate();
         String url="http://localhost:8085/rest/partners/{id}";

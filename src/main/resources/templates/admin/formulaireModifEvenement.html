@@ -16,7 +16,7 @@
 </header>
 
 <main>
-  <form class="createForm-form" th:action="@{/ModificationEvenement/{id}(id=${event.id})}" th:object="${event}" method="post" >
+  <form class="createForm-form" th:action="@{/admin/ModificationEvenement/{id}(id=${event.id})}" th:object="${event}" th:method="put" >
     <p class="createForm-introduction"></p>
     <div class="createForm-information">
 

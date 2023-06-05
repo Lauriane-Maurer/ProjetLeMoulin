@@ -1,6 +1,6 @@
-package fr.simplon.projetlemoulin.Repository;
+package fr.simplon.projetlemoulin.repository;
 
-import fr.simplon.projetlemoulin.Entities.Event;
+import fr.simplon.projetlemoulin.entities.Event;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface EventRepository extends JpaRepository<Event, Long> {

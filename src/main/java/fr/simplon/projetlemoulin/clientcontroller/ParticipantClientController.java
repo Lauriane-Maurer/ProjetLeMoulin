@@ -1,6 +1,6 @@
-package fr.simplon.projetlemoulin.ClientController;
+package fr.simplon.projetlemoulin.clientcontroller;
 
-import fr.simplon.projetlemoulin.Entities.Participant;
+import fr.simplon.projetlemoulin.entities.Participant;
 import org.springframework.http.*;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -17,6 +17,14 @@ public class ParticipantClientController {
 
     private RestTemplate restTemplate;
 
+
+    /**
+     * Displays the form for updating participant information.
+     *
+     * @param model The model used to add the participant object to be displayed in the form.
+     * @param username The username of the participant whose information is being updated.
+     * @return The name of the view to show the participant information modification form.
+     */
     @GetMapping("/InfoParticipant/{username}")
     public String displayParticipantInformationsForm(Model model, @PathVariable String username) {
         this.restTemplate = new RestTemplate();
@@ -30,6 +38,13 @@ public class ParticipantClientController {
     }
 
 
+    /**
+     * Registers the participant information by processing the participant information form submission.
+     *
+     * @param participant The participant object with the updated information obtained from the form.
+     * @param model The model used to add attributes for the view.
+     * @return The name of the view to display a success message after registering the participant information.
+     */
     @PostMapping("/InfoParticipant")
     public String registerInfoParticipant(@ModelAttribute("participant") Participant participant, Model model) {
         this.restTemplate = new RestTemplate();
@@ -46,6 +61,13 @@ public class ParticipantClientController {
     }
 
 
+    /**
+     * Displays the form for updating participant information.
+     *
+     * @param model The model used to add the participant object to be displayed in the form.
+     * @param username The username of the participant whose information is being updated.
+     * @return The name of the view to show the participant information form if the participant exists, or to redirect to the participant information registration form if the participant does not exist.
+     */
     @GetMapping("/FicheInfoParticipant/{username}")
     public String displayUpdateParticipantForm(Model model, @PathVariable String username){
         this.restTemplate = new RestTemplate();
@@ -62,6 +84,15 @@ public class ParticipantClientController {
         }
     }
 
+
+    /**
+     * Updates participant information by processing the participant information modification form submission.
+     *
+     * @param participant The participant object with the updated information obtained from the form.
+     * @param username The username of the participant whose information is being updated.
+     * @param model The model used to add attributes for the view.
+     * @return The name of the view to display a success message after updating the participant information.
+     */
     @PostMapping("/ModificationInfoParticipant/{username}")
     public String updateParticipantInfo (@ModelAttribute("participant")Participant participant, @PathVariable String username, Model model) {
         this.restTemplate = new RestTemplate();

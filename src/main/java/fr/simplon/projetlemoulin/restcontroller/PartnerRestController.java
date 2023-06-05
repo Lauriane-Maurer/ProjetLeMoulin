@@ -1,6 +1,6 @@
-package fr.simplon.projetlemoulin.RestController;
-import fr.simplon.projetlemoulin.Entities.Partner;
-import fr.simplon.projetlemoulin.Repository.PartnerRepository;
+package fr.simplon.projetlemoulin.restcontroller;
+import fr.simplon.projetlemoulin.entities.Partner;
+import fr.simplon.projetlemoulin.repository.PartnerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

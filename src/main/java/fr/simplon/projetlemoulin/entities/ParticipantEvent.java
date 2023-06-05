@@ -1,6 +1,5 @@
-package fr.simplon.projetlemoulin.Entities;
+package fr.simplon.projetlemoulin.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity

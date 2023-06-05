@@ -38,7 +38,7 @@
         <td class="cell" th:text="${partner.description}"></td>
         <td class="cell" th:text="${partner.zip_code}"></td>
         <td class="cell" th:text="${partner.town}"></td>
-        <td><button type="button" class="action-button" th:onclick="|window.location.href='@{/InfoPartenaire/{id}(id=${partner.id})}'|">Modifier</button></td>
+        <td><button type="button" class="action-button" th:onclick="|window.location.href='@{/admin/InfoPartenaire/{id}(id=${partner.id})}'|">Modifier</button></td>
         <td><button type="button" class="action-button" th:onclick="|confirmDeletionPartner(${partner.id});|">Supprimer</button></td>
       </tr>
       </tbody>

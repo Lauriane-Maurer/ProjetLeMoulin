@@ -1,4 +1,4 @@
-package fr.simplon.projetlemoulin.Entities;
+package fr.simplon.projetlemoulin.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -53,8 +53,7 @@ public class Event {
     public Event() {
     }
 
-    public Event(Long id, String type, String title, String description, LocalDateTime start_date, LocalDateTime end_date, boolean limit_places, Integer total_places, Integer available_places, Double price, String speaker, String photo, List<ParticipantEvent> participantEvents, List<Partner> partners) {
-        this.id = id;
+    public Event(String type, String title, String description, LocalDateTime start_date, LocalDateTime end_date, boolean limit_places, Integer total_places, Integer available_places, Double price, String speaker, String photo, List<ParticipantEvent> participantEvents, List<Partner> partners) {
         this.type = type;
         this.title = title;
         this.description = description;

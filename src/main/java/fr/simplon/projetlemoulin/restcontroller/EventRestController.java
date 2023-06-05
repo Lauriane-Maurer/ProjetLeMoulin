@@ -1,7 +1,7 @@
-package fr.simplon.projetlemoulin.RestController;
+package fr.simplon.projetlemoulin.restcontroller;
 
-import fr.simplon.projetlemoulin.Entities.Event;
-import fr.simplon.projetlemoulin.Repository.EventRepository;
+import fr.simplon.projetlemoulin.entities.Event;
+import fr.simplon.projetlemoulin.repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -86,7 +86,7 @@ public class EventRestController {
      * @param id The ID of the event to update.
      * @return The updated event.
      */
-    @PostMapping("/rest/UpdateEvent/{id}")
+    @PutMapping("/rest/UpdateEvent/{id}")
     public Event updateEvent(@RequestBody Event newEvent, @PathVariable Long id) {
         return repo.findById(id)
                 .map(event -> {
