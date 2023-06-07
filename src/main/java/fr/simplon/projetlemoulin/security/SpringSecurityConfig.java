@@ -45,11 +45,15 @@ public class SpringSecurityConfig  {
     {
         return http.csrf().disable() // Pour l'instant on désactive la protection CSRF
                 .authorizeHttpRequests()
+                .requestMatchers("/member/**").authenticated() //
                 .requestMatchers("/admin/**").hasRole("ADMIN") //
                 .anyRequest().permitAll()//
                 .and()
                 .formLogin()
                 .loginPage("/login").permitAll()
+                .and()
+                .exceptionHandling()
+                .accessDeniedPage("/error") // Redirige vers la page d'erreur en cas d'accès refusé
                 .and().passwordManagement(management -> management.changePasswordPage("/change-password"))
                 .build();
     }

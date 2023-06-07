@@ -25,7 +25,7 @@ public class ParticipantClientController {
      * @param username The username of the participant whose information is being updated.
      * @return The name of the view to show the participant information modification form.
      */
-    @GetMapping("/InfoParticipant/{username}")
+    @GetMapping("/membre/InfoParticipant/{username}")
     public String displayParticipantInformationsForm(Model model, @PathVariable String username) {
         this.restTemplate = new RestTemplate();
 
@@ -45,7 +45,7 @@ public class ParticipantClientController {
      * @param model The model used to add attributes for the view.
      * @return The name of the view to display a success message after registering the participant information.
      */
-    @PostMapping("/InfoParticipant")
+    @PostMapping("/membre/InfoParticipant")
     public String registerInfoParticipant(@ModelAttribute("participant") Participant participant, Model model) {
         this.restTemplate = new RestTemplate();
 
@@ -68,7 +68,7 @@ public class ParticipantClientController {
      * @param username The username of the participant whose information is being updated.
      * @return The name of the view to show the participant information form if the participant exists, or to redirect to the participant information registration form if the participant does not exist.
      */
-    @GetMapping("/FicheInfoParticipant/{username}")
+    @GetMapping("/membre/FicheInfoParticipant/{username}")
     public String displayUpdateParticipantForm(Model model, @PathVariable String username){
         this.restTemplate = new RestTemplate();
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -80,7 +80,7 @@ public class ParticipantClientController {
             model.addAttribute("participant", participant);
             return "membres/ficheInfoParticipant";
         }else{
-            return "redirect:/InfoParticipant/{username}";
+            return "redirect:/membre/InfoParticipant/{username}";
         }
     }
 
@@ -93,7 +93,7 @@ public class ParticipantClientController {
      * @param model The model used to add attributes for the view.
      * @return The name of the view to display a success message after updating the participant information.
      */
-    @PostMapping("/ModificationInfoParticipant/{username}")
+    @PostMapping("/membre/ModificationInfoParticipant/{username}")
     public String updateParticipantInfo (@ModelAttribute("participant")Participant participant, @PathVariable String username, Model model) {
         this.restTemplate = new RestTemplate();
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

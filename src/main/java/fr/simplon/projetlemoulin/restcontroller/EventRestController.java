@@ -1,7 +1,7 @@
 package fr.simplon.projetlemoulin.restcontroller;
 
 import fr.simplon.projetlemoulin.entities.Event;
-import fr.simplon.projetlemoulin.repository.EventRepository;
+import fr.simplon.projetlemoulin.repositories.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;

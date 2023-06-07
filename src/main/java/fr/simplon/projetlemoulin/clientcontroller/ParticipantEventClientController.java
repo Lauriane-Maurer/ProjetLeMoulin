@@ -32,7 +32,7 @@ public class ParticipantEventClientController {
      * registration form if the participant does not exist, or to show a message if the event
      * is already full.
      */
-    @GetMapping("/InscriptionParticipant/{eventId}/{username}")
+    @GetMapping("/membre/InscriptionParticipant/{eventId}/{username}")
     public String displayEventParticipationForm(Model model, @PathVariable Long eventId, @PathVariable String username) {
         ParticipantEvent participantEvent = new ParticipantEvent();
         model.addAttribute("participantEvent", participantEvent);
@@ -55,7 +55,7 @@ public class ParticipantEventClientController {
                 participantEvent.setParticipant(participant);
                 return "membres/formulaireParticipationEvenement";
             } else {
-                return "redirect:/InfoParticipant/{username}";
+                return "redirect:/membre/InfoParticipant/{username}";
             }
         }else {
             model.addAttribute("Message", "Cet évènement est déjà complet.");
@@ -77,7 +77,7 @@ public class ParticipantEventClientController {
      * participant for the event, or to show a message if the participant is already registered
      * for the event.
      */
-    @PostMapping("/InscriptionParticipant")
+    @PostMapping("/membre/InscriptionParticipant")
     public String registrationParticipantEvent(@ModelAttribute("participantEvent") ParticipantEvent participantEvent, Model model) {
         this.restTemplate = new RestTemplate();
         String url = "http://localhost:8085/rest/participantEvent";
@@ -116,7 +116,7 @@ public class ParticipantEventClientController {
      * @param username The username of the participant.
      * @return The name of the view to display the list of event participations if the participant exists and has participations, or to show a message if the participant has no current event participations.
      */
-    @GetMapping("/ListeParticipations/{username}")
+    @GetMapping("/membre/ListeParticipations/{username}")
     public String displayParticipationsList(Model model, @PathVariable String username) {
         this.restTemplate = new RestTemplate();
         String participantUrl = "http://localhost:8085/rest/participants/{username}";
@@ -149,7 +149,7 @@ public class ParticipantEventClientController {
      * @param id The ID of the participation to be deleted.
      * @return The name of the view to display a message confirming the cancellation of the participation.
      */
-    @GetMapping("annulationParticipation/{id}")
+    @GetMapping("/membre/annulationParticipation/{id}")
     public String deleteParticipation(Model model, @PathVariable Long id){
         this.restTemplate = new RestTemplate();
         String url="http://localhost:8085/rest/participantEvent/{id}";
@@ -167,7 +167,7 @@ public class ParticipantEventClientController {
      * @param eventId The ID of the event for which the list of participants is to be displayed.
      * @return The name of the view to display the list of participants registered for the event.
      */
-    @GetMapping("InscriptionsEvenement/{eventId}")
+    @GetMapping("/admin/InscriptionsEvenement/{eventId}")
     public String displayParticipantsEvent(Model model, @PathVariable Long eventId) {
         this.restTemplate = new RestTemplate();
         String EventUrl = "http://localhost:8085/rest/events/{id}";

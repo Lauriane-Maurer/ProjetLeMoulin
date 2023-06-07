@@ -17,7 +17,7 @@
 </header>
 
 <main>
-  <form th:action="@{/InfoParticipant}" th:object="${participant}" method="post" >
+  <form th:action="@{/membre/InfoParticipant}" th:object="${participant}" method="post" >
     <p class="createForm-introduction">Merci de compléter les informations suivantes:</p>
     <div class="form-section">
       <input class="form-item" type="text" th:field="*{firstname}" placeholder="Prénom" required/>

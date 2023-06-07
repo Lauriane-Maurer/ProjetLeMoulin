@@ -3,6 +3,10 @@ package fr.simplon.projetlemoulin.dto;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
+/**
+ * Represents a form for creating a new user.
+ * This class is used to capture and validate the input data for creating a new user.
+ */
 public class CreateUserForm {
 
     @NotBlank

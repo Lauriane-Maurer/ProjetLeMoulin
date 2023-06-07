@@ -2,6 +2,12 @@ package fr.simplon.projetlemoulin.dto;
 
 import jakarta.validation.constraints.NotNull;
 
+
+
+/**
+ * Represents a form for changing the user's password.
+ * This class is used to capture and validate the input data for changing the password.
+ */
 public class ChangePasswordForm {
 
     private String username;

@@ -38,17 +38,16 @@ public class Event {
     private String photo;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "event")
-    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
-    private List<ParticipantEvent> participantEvents;
-
-
-    @JsonIgnore
     @ManyToMany
     @JoinTable(name = "event_partner",
             joinColumns = @JoinColumn(name = "event_id"),
             inverseJoinColumns = @JoinColumn(name = "partner_id"))
     private List<Partner> partners;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "event")
+    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
+    private List<ParticipantEvent> participantEvents;
 
     public Event() {
     }

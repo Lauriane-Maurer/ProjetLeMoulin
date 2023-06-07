@@ -2,8 +2,8 @@ package fr.simplon.projetlemoulin.restcontroller;
 
 import fr.simplon.projetlemoulin.entities.Event;
 import fr.simplon.projetlemoulin.entities.ParticipantEvent;
-import fr.simplon.projetlemoulin.repository.EventRepository;
-import fr.simplon.projetlemoulin.repository.ParticipantEventRepository;
+import fr.simplon.projetlemoulin.repositories.EventRepository;
+import fr.simplon.projetlemoulin.repositories.ParticipantEventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +15,6 @@ public class ParticipantEventRestController {
 
     @Autowired
     private ParticipantEventRepository repo;
-
 
     @Autowired
     private EventRepository eventRepo;

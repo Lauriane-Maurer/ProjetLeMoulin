@@ -1,7 +1,7 @@
 package fr.simplon.projetlemoulin.restcontroller;
 
 import fr.simplon.projetlemoulin.entities.Participant;
-import fr.simplon.projetlemoulin.repository.ParticipantRepository;
+import fr.simplon.projetlemoulin.repositories.ParticipantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

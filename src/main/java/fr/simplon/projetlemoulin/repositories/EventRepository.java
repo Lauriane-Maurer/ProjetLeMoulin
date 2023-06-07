@@ -1,4 +1,4 @@
-package fr.simplon.projetlemoulin.repository;
+package fr.simplon.projetlemoulin.repositories;
 
 import fr.simplon.projetlemoulin.entities.Event;
 import org.springframework.data.jpa.repository.JpaRepository;

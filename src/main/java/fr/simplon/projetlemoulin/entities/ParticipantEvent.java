@@ -12,14 +12,12 @@ public class ParticipantEvent {
 
 
     @ManyToOne
-    @JoinColumn(name = "id_participant", referencedColumnName = "id")
-    private Participant participant;
-
-
-    @ManyToOne
     @JoinColumn(name = "id_evenement", referencedColumnName = "id")
     private Event event;
 
+    @ManyToOne
+    @JoinColumn(name = "id_participant", referencedColumnName = "id")
+    private Participant participant;
 
     public ParticipantEvent() {
     }

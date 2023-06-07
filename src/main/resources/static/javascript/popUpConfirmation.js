@@ -1,6 +1,6 @@
 function confirmDeletion(id) {
     if (confirm("Êtes-vous sûr de vouloir supprimer cette inscription ?")) {
-        window.location.href = '/admin/annulationParticipation/' + id;
+        window.location.href = '/membre/annulationParticipation/' + id;
     }
 }
 
