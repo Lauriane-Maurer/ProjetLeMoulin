@@ -1,35 +1,38 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/css/styleMoulin.css">
-    <link rel="stylesheet" href="/css/styleNavbar.css">
-    <link rel="stylesheet" href="/css/styleProgrammation.css">
-    <title>Programmation</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<body>
+        <link rel="stylesheet" href="/css/styleMoulin.css">
+        <link rel="stylesheet" href="/css/styleNavbar.css">
+        <link rel="stylesheet" href="/css/styleProgrammation.css">
+        <title>Programmation du Moulin: animations culturelles, ateliers, stages, conférences</title>
+        <meta name="description" content="Découvrez les évènements organisés par les acteurs
+        locaux du Pays d'Iroise dans de nombreux domaines: agriculture bio, artisanat local,
+        écologie, théâtre, musique, danse, yoga, cuisine, etc...">
+    </head>
 
-<div th:replace="~{fragments/fragment_navbar :: fragment_navbar}" ></div>
+    <body>
 
-<header class="programming-header">
-    <h1>Le Programme</h1>
-    <h2>Les rendez-vous du <span id="programming-title-Moulin">Moulin</span></h2>
-</header>
+        <div th:replace="~{fragments/fragment_navbar :: fragment_navbar}" ></div>
 
-<main>
-    <p class="programming-text">Le Moulin propose des ateliers à la demi-journée ou à la journée animés par des professionnels, des conférences sur des thèmes variés, des animations culturelles éphémères et des stages en pension complète. Pour découvrir le programme et réservez sa place, c’est par ici! </p>
-    <div class="display-events">
-        <div id="listings"></div>
-    </div>
-</main>
+        <header class="programming-header">
+            <h1>Le Programme</h1>
+            <h2>Les rendez-vous du <span id="programming-title-Moulin">Moulin</span></h2>
+        </header>
 
+        <main>
+            <p class="programming-text">Le Moulin propose des ateliers animés par des professionnels, des conférences sur des thèmes variés, des animations culturelles éphémères et des stages en pension complète. Pour découvrir le programme et réservez sa place, c’est par ici! </p>
+            <div class="display-events">
+                <div id="listings"></div>
+            </div>
 
-</body>
+        </main>
+    </body>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="/javascript/EventCard.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/javascript/EventCard.js"></script>
 
 </html>

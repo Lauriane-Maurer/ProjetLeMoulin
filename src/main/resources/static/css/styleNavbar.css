@@ -7,7 +7,6 @@
     font-family: Arial, sans-serif;
     text-decoration: none;
     padding: 10px;
-    right:0;
     background: transparent;
     font-size: 10px;
 }
@@ -16,7 +15,6 @@
     color: black;
     text-decoration: none;
 }
-
 
 .navbar ul {
     display: flex;

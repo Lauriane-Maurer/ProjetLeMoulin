@@ -108,7 +108,7 @@ public class PartnerRestController {
                     partner.setUrl(newPartner.getUrl());
                     partner.setLatitude(newPartner.getLatitude());
                     partner.setLongitude(newPartner.getLongitude());
-                    partner.setEvent(newPartner.getEvent());
+                    partner.setEvents(newPartner.getEvents());
                     return repo.save(partner);
                 })
                 .orElseGet(() -> {

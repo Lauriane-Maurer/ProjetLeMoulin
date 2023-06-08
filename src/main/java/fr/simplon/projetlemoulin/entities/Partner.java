@@ -27,18 +27,17 @@ public class Partner {
     private Double latitude;
     private Double longitude;
 
-    @JsonIgnore
+
     @ManyToMany
     @JoinTable(name = "event_partner",
             joinColumns = @JoinColumn(name = "event_id"),
             inverseJoinColumns = @JoinColumn(name = "partner_id"))
-    private List<Event> event;
+    private List<Event> events;
 
     public Partner() {
     }
 
-    public Partner(Long id, String name, String activity, String description, String adress, String town, int zip_code, String url, Double latitude, Double longitude, List<Event> event) {
-        this.id = id;
+    public Partner(String name, String activity, String description, String adress, String town, int zip_code, String url, Double latitude, Double longitude, List<Event> events) {
         this.name = name;
         this.activity = activity;
         this.description = description;
@@ -48,7 +47,7 @@ public class Partner {
         this.url = url;
         this.latitude = latitude;
         this.longitude = longitude;
-        this.event = event;
+        this.events = events;
     }
 
     public Long getId() {
@@ -131,11 +130,11 @@ public class Partner {
         this.longitude = longitude;
     }
 
-    public List<Event> getEvent() {
-        return event;
+    public List<Event> getEvents() {
+        return events;
     }
 
-    public void setEvent(List<Event> event) {
-        this.event = event;
+    public void setEvents(List<Event> events) {
+        this.events = events;
     }
 }

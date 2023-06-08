@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
+<html lang="fr" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
   <meta charset="UTF-8">
@@ -23,16 +23,13 @@
     </div>
 
     <div class="login-form">
-
       <input class="login-item" id="login" type="text" name="login" placeholder="Username" th:field="*{login}">
       <span class="error" th:errors="*{login}">Error</span>
-
       <input class="login-item" id="password" type="password" name="password" placeholder="Password" th:field="*{password}">
       <span class="error" th:errors="*{password}">Error</span>
-
-      <input class="login-item" id="confirmPassword" type="password" name="confirmPassword" placeholder="Confirm password" th:field="*{confirmPassword}">
+      <input class="login-item" id="confirmPassword" type="password" name="confirmPassword" placeholder="Confirm password"
+             th:field="*{confirmPassword}">
       <span class="error" th:errors="*{confirmPassword}">Error</span>
-
       <button class="login-button" type="submit" >Créer</button>
       <button class="login-button-cancel" type="button"  onclick="window.location='/'">Annuler</button>
     </div>

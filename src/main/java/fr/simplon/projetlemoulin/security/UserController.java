@@ -83,7 +83,7 @@ public class UserController {
      */
 
     @GetMapping("/inscription")
-    public String subscribe(Model model) {
+    public String getUserRegsitrationForm(Model model) {
         model.addAttribute("user", new CreateUserForm());
         return "connexion/inscriptionMembre";
     }
@@ -126,7 +126,8 @@ public class UserController {
         // Create the account in database with its role
         userDetailsManager.createUser(userDetails);
 
-        model.addAttribute("Message", "Votre inscription a été réalisée avec succès ! Cliquez sur 'Se Connecter' dans la barre de navigation.");
+        model.addAttribute("Message", "Votre inscription a été réalisée avec succès ! Cliquez sur 'Se Connecter' " +
+                "dans la barre de navigation.");
         return "message";
     }
 
@@ -180,6 +181,15 @@ public class UserController {
     @GetMapping("/admin/gestionnaireAdmin")
     public String displayAdminPage(Model model) {
         return "admin/pageAdmin";
+    }
+
+
+    @GetMapping("/accesrefus")
+    public String handleError(Model model) {
+
+        model.addAttribute("Message", "Désolé, vous n'avez pas les droits pour accéder à cette page.");
+        return "message";
+
     }
 
 }

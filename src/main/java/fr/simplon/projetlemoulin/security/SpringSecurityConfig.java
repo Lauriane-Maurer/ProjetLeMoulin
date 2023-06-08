@@ -29,23 +29,17 @@ public class SpringSecurityConfig  {
 
 
     @Bean
-    public UserDetailsManager users(DataSource dataSource)
-    {
-        return new JdbcUserDetailsManager(dataSource);
-    }
+    public UserDetailsManager users(DataSource dataSource) { return new JdbcUserDetailsManager(dataSource); }
 
     @Bean
-    public PasswordEncoder passwordEncoder()
-    {
-        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
-    }
+    public PasswordEncoder passwordEncoder() { return PasswordEncoderFactories.createDelegatingPasswordEncoder(); }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception
     {
-        return http.csrf().disable() // Pour l'instant on désactive la protection CSRF
+        return http.csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/member/**").authenticated() //
+                .requestMatchers("/membre/**").authenticated() //
                 .requestMatchers("/admin/**").hasRole("ADMIN") //
                 .anyRequest().permitAll()//
                 .and()
@@ -53,7 +47,7 @@ public class SpringSecurityConfig  {
                 .loginPage("/login").permitAll()
                 .and()
                 .exceptionHandling()
-                .accessDeniedPage("/error") // Redirige vers la page d'erreur en cas d'accès refusé
+                .accessDeniedPage("/accesrefus") // Redirige vers la page d'erreur en cas d'accès refusé
                 .and().passwordManagement(management -> management.changePasswordPage("/change-password"))
                 .build();
     }
