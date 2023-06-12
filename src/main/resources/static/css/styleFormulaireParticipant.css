@@ -70,3 +70,11 @@
     font-size: 12px;
     color: #0694fb;
 }
+
+/*---------------------style for formulaireModifParticipant------------------------------------*/
+
+.error {
+    color: red;
+    font-size: 10px;
+    margin: 10px;
+}

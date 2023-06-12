@@ -102,7 +102,7 @@ public class PartnerRestController {
                     partner.setName(newPartner.getName());
                     partner.setActivity(newPartner.getActivity());
                     partner.setDescription(newPartner.getDescription());
-                    partner.setAdress(newPartner.getAdress());
+                    partner.setAddress(newPartner.getAddress());
                     partner.setTown(newPartner.getTown());
                     partner.setZip_code(newPartner.getZip_code());
                     partner.setUrl(newPartner.getUrl());

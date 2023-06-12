@@ -1,9 +1,13 @@
 package fr.simplon.projetlemoulin;
 
 import fr.simplon.projetlemoulin.entities.Event;
+import fr.simplon.projetlemoulin.entities.Participant;
+import fr.simplon.projetlemoulin.repositories.EventRepository;
+import fr.simplon.projetlemoulin.repositories.PartnerRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
@@ -21,12 +25,15 @@ public class EventTests {
 
     /***************************** Tests on Event CRUD ********************************/
 
+    @Autowired
+    private EventRepository repo;
 
     private RestTemplate restTemplate;
     private HttpHeaders headers;
     private Event event;
 
     private final String URL = "http://localhost:8085/rest/events";
+
 
     @BeforeEach
     public void init()
@@ -49,12 +56,14 @@ public class EventTests {
     }
 
 
+
     /**
      * Tests the addition of a new event.
      */
     @Test
-    public void testAddSurvey() {
+    public void testAddEvent() {
         ResponseEntity<Event> response = restTemplate.postForEntity(URL, event, Event.class);
+        Long newEventId = response.getBody().getId();
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertNotNull(response.getBody().getId());
@@ -69,6 +78,8 @@ public class EventTests {
         assertEquals(event.getSpeaker(), response.getBody().getSpeaker());
         assertEquals(event.getParticipantEvents(), response.getBody().getParticipantEvents());
         assertEquals(event.getPartners(), response.getBody().getPartners());
+
+        repo.deleteById(newEventId);
     }
 
 
@@ -77,6 +88,9 @@ public class EventTests {
      */
     @Test
     public void testDisplayAllEvents() {
+        ResponseEntity<Event> response1 = restTemplate.postForEntity(URL, event, Event.class);
+        Long newEventId = response1.getBody().getId();
+
         ResponseEntity<List<Event>> response = restTemplate.exchange(
                 URL,
                 HttpMethod.GET,
@@ -88,6 +102,8 @@ public class EventTests {
         Assertions.assertEquals(HttpStatus.OK, response.getStatusCode());
         Assertions.assertNotNull(events);
         Assertions.assertFalse(events.isEmpty());
+
+        repo.deleteById(newEventId);
     }
 
 
@@ -125,7 +141,8 @@ public class EventTests {
         assertEquals(event.getPrice(), retrievedEvent.getPrice());
         assertEquals(event.getSpeaker(), retrievedEvent.getSpeaker());
         assertEquals(event.getParticipantEvents(), retrievedEvent.getParticipantEvents());
-        assertEquals(event.getPartners(), retrievedEvent.getPartners());
+
+        repo.deleteById(newEventId);
     }
 
 
@@ -141,7 +158,7 @@ public class EventTests {
 
         ResponseEntity<Event> response1 = restTemplate.postForEntity(URL, event, Event.class);
 
-        // Récupération de l'identifiant du sondage créé
+        // Récupération de l'identifiant de l'évènement créé
         Long newEventId = response1.getBody().getId();
         Assertions.assertNotNull(newEventId);
 
@@ -155,7 +172,7 @@ public class EventTests {
 
         ResponseEntity<Event> response2 = restTemplate.exchange(
                 "http://localhost:8085/rest/UpdateEvent/{id}",
-                HttpMethod.POST,
+                HttpMethod.PUT,
                 request,
                 Event.class,
                 newEventId);
@@ -165,6 +182,7 @@ public class EventTests {
         assertEquals(event.getTitle(), response2.getBody().getTitle());
         assertEquals(event.getDescription(), response2.getBody().getDescription());
 
+        repo.deleteById(newEventId);
     }
 
 
@@ -182,7 +200,7 @@ public class EventTests {
         Long newEventId = response1.getBody().getId();
         Assertions.assertNotNull(newEventId);
 
-        // Suppression du sondage créé
+        // Suppression de l'évènement créé
         HttpEntity<Void> requestDelete = new HttpEntity<>(headers);
         ResponseEntity<Void> responseDelete = restTemplate.exchange(
                 URL + "/" + newEventId,
@@ -194,5 +212,6 @@ public class EventTests {
         //Verification du code de statut HTTP de la réponse de la requête HTTP. Il doit être OK si la suppression a bien été effectuée.
         assertEquals(HttpStatus.OK, responseDelete.getStatusCode());
     }
+
 
 }

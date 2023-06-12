@@ -1,11 +1,13 @@
 package fr.simplon.projetlemoulin.clientcontroller;
 
 import fr.simplon.projetlemoulin.entities.Participant;
+import jakarta.validation.Valid;
 import org.springframework.http.*;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -46,9 +48,11 @@ public class ParticipantClientController {
      * @return The name of the view to display a success message after registering the participant information.
      */
     @PostMapping("/membre/InfoParticipant")
-    public String registerInfoParticipant(@ModelAttribute("participant") Participant participant, Model model) {
+    public String registerInfoParticipant(@ModelAttribute("participant") @Valid Participant participant, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            return "membres/formulaireInfoParticipant";
+        } else {
         this.restTemplate = new RestTemplate();
-
         // Enregistrer le participant
         String Url = "http://localhost:8085/rest/participants";
         HttpHeaders headers = new HttpHeaders();
@@ -58,6 +62,7 @@ public class ParticipantClientController {
 
         model.addAttribute("Message", "Vos coordonnées ont bien été enregistrées, vous pouvez maintenant vous inscrire à un évènement! Pour modifier vos coordonnées, rendez-vous sur 'Mes information' dans la barre de navigation.");
         return "message";
+        }
     }
 
 
@@ -94,7 +99,10 @@ public class ParticipantClientController {
      * @return The name of the view to display a success message after updating the participant information.
      */
     @PostMapping("/membre/ModificationInfoParticipant/{username}")
-    public String updateParticipantInfo (@ModelAttribute("participant")Participant participant, @PathVariable String username, Model model) {
+    public String updateParticipantInfo (@ModelAttribute("participant") @Valid Participant participant,BindingResult bindingResult, @PathVariable String username, Model model) {
+        if (bindingResult.hasErrors()) {
+            return "membres/ficheInfoParticipant";
+        } else {
         this.restTemplate = new RestTemplate();
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         username = authentication.getName();
@@ -106,6 +114,7 @@ public class ParticipantClientController {
 
         model.addAttribute("Message", "La mise à jour de vos coordonnées a bien été enregistrée.");
         return "message";
+        }
     }
 
 

@@ -116,9 +116,7 @@ public class UserController {
             user.setLogin("");
             validation.addError(new ObjectError("user", "Cet utilisateur existe déjà"));
         }
-        if (validation.hasErrors()) {
-            return "/connexion/inscriptionMembre";
-        }
+        if (validation.hasErrors()) {return "/connexion/inscriptionMembre";}
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         // Roles for new user
         Collection<? extends GrantedAuthority> roles = Arrays.asList(new SimpleGrantedAuthority("USER"));
@@ -126,8 +124,8 @@ public class UserController {
         // Create the account in database with its role
         userDetailsManager.createUser(userDetails);
 
-        model.addAttribute("Message", "Votre inscription a été réalisée avec succès ! Cliquez sur 'Se Connecter' " +
-                "dans la barre de navigation.");
+        model.addAttribute("Message", "Votre inscription a été réalisée avec succès ! Cliquez sur " +
+                "'Se Connecter' dans la barre de navigation.");
         return "message";
     }
 

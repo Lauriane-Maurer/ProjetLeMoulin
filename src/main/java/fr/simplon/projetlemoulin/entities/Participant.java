@@ -3,6 +3,7 @@ package fr.simplon.projetlemoulin.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 import java.util.Set;
 
@@ -20,7 +21,9 @@ public class Participant {
     private String phone;
 
     private String email;
-    private int zip_code;
+
+    @Size(min = 5, max = 5, message = "Le code postal doit comporter 5 caractères")
+    private String zip_code;
     private String username;
 
     @JsonIgnore
@@ -30,7 +33,7 @@ public class Participant {
     public Participant() {
     }
 
-    public Participant(String firstname, String lastname, String phone, String email, int zip_code, String username, Set<ParticipantEvent> participantEvents) {
+    public Participant(String firstname, String lastname, String phone, String email, String zip_code, String username, Set<ParticipantEvent> participantEvents) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.phone = phone;
@@ -80,11 +83,11 @@ public class Participant {
         this.email = email;
     }
 
-    public int getZip_code() {
+    public String getZip_code() {
         return zip_code;
     }
 
-    public void setZip_code(int zip_code) {
+    public void setZip_code(String zip_code) {
         this.zip_code = zip_code;
     }
 

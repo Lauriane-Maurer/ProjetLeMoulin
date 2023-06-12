@@ -43,8 +43,8 @@
 
       <div class="form-section">
         <h5>Localisation</h5>
-        <input class="form-item" type="text" th:field="*{adress}" placeholder="Adresse" required/>
-        <span class="error" th:if="${#fields.hasErrors('adress')}" th:errors="*{adress}"></span>
+        <input class="form-item" type="text" th:field="*{address}" placeholder="Adresse" required/>
+        <span class="error" th:if="${#fields.hasErrors('adress')}" th:errors="*{address}"></span>
         <input class="form-item" type="text" th:field="*{town}" placeholder="Ville" required/>
         <span class="error" th:if="${#fields.hasErrors('town')}" th:errors="*{town}"></span>
         <input class="form-item" type="text" th:field="*{zip_code}" placeholder="Code postal" required/>

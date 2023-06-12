@@ -39,7 +39,7 @@
               <span>h</span>
               <span th:text="${#temporals.format(event.end_date, 'mm')}"></span>
             </span>
-            <span th:unless="${#temporals.format(event.end_date, 'yyyyMMdd')} == ${#temporals.format(event.end_date, 'yyyyMMdd')}">
+            <span th:unless="${#temporals.format(event.start_date, 'yyyyMMdd')} == ${#temporals.format(event.end_date, 'yyyyMMdd')}">
               <span>Du </span>
               <span th:text="${#temporals.dayOfWeekName(event.start_date)}"></span>
               <span th:text="${#temporals.day(event.start_date)}"></span>

@@ -6,7 +6,6 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import org.hibernate.validator.constraints.URL;
-
 import java.util.List;
 
 @Entity
@@ -25,7 +24,7 @@ public class Partner {
     @Pattern(regexp = "^[\\p{L}\\d\\s’'-.,?!:()…]+$", message = "La description contient des caractères non autorisés")
     private String description;
     @Pattern(regexp = "^[\\p{L}\\d\\s’'-.,?!:()…]+$", message = "L'adresse contient des caractères non autorisés")
-    private String adress;
+    private String address;
     @Pattern(regexp = "^[\\p{L}\\d\\s’'-.,?!:()…]+$", message = "Le nom de la ville contient des caractères non autorisés")
     private String town;
     @Size(min = 5, max = 5, message = "Le code postal doit comporter 5 caractères")
@@ -36,6 +35,7 @@ public class Partner {
     private Double longitude;
 
 
+    @JsonIgnore
     @ManyToMany
     @JoinTable(name = "event_partner",
             joinColumns = @JoinColumn(name = "event_id"),
@@ -45,17 +45,16 @@ public class Partner {
     public Partner() {
     }
 
-    public Partner(String name, String activity, String description, String adress, String town, String zip_code, String url, Double latitude, Double longitude, List<Event> events) {
+    public Partner(String name, String activity, String description, String address, String town, String zip_code, String url, Double latitude, Double longitude) {
         this.name = name;
         this.activity = activity;
         this.description = description;
-        this.adress = adress;
+        this.address = address;
         this.town = town;
         this.zip_code = zip_code;
         this.url = url;
         this.latitude = latitude;
         this.longitude = longitude;
-        this.events = events;
     }
 
     public Long getId() {
@@ -90,12 +89,12 @@ public class Partner {
         this.description = description;
     }
 
-    public String getAdress() {
-        return adress;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAdress(String adress) {
-        this.adress = adress;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getTown() {

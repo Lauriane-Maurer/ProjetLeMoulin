@@ -24,7 +24,8 @@
       <input type="text" th:field="${participant.lastname}" />
       <input type="text" th:field="${participant.phone}" />
       <input type="email" th:field="${participant.email}" />
-      <input type="number" th:field="${participant.zip_code}" />
+      <input type="text" th:field="${participant.zip_code}" />
+      <span class="error" th:if="${#fields.hasErrors('zip_code')}" th:errors="*{zip_code}"></span>
       <input type="hidden" th:field="${participant.username}" th:value="${#authentication.getName()}" readonly/>
       <br>
       <button class="confirmation-button" type="submit">J'enregistre la mise à jour</button>
