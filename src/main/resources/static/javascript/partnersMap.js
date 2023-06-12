@@ -5,9 +5,9 @@
 let map = L.map('mapid').setView([48.2020471, -2.9326435], 8);
 
 // ajouter une couche de tuiles OpenStreetMap à la carte
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors',
-    maxZoom: 14
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 14,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 
 /**
@@ -24,7 +24,8 @@ fetch("/geolocalisationPartenaires")
                 url = "http://" + url;
             }
             let link = "<a href='" + url + "'>" + partner.url + "</a>";
-            marker.bindPopup("<b>" + partner.name+ "</b><br>" + partner.adress + "<br>" + partner.zip_code+ "<br>" + partner.town + "<br>" + link).openPopup();
+            marker.bindPopup("<b>" + partner.name+ "</b><br>" + partner.adress + "<br>" +
+                partner.zip_code+ "<br>" + partner.town + "<br>" + link).openPopup();
 
 
             // Add a 'click' event listener to the marker
@@ -35,12 +36,12 @@ fetch("/geolocalisationPartenaires")
 
 
             // Add a 'click' event listener to the organisme name in the table
-            var partnerNames = document.querySelectorAll("td.cellule:first-child");
+            var partnerNames = document.querySelectorAll("td.cell:first-child");
             partnerNames.forEach(partnerName => {
                 if (partnerName.textContent === partner.name) {
                     partnerName.addEventListener('click', function() {
                         // Change the zoom level of the map
-                        map.setView([partner.latitude, partner.longitude], 14);
+                        map.setView([partner.latitude, partner.longitude], 16);
                     });
                 }
             });

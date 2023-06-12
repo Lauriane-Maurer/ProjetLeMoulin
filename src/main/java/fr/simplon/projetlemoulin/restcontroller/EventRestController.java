@@ -37,7 +37,7 @@ public class EventRestController {
      * @return A list of all events.
      */
     @GetMapping(path = "/rest/events")
-    public List<Event> getEvent() {
+    public List<Event> getEvents() {
         return repo.findAll();
     }
 

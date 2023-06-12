@@ -1,10 +1,13 @@
 package fr.simplon.projetlemoulin.clientcontroller;
 
+import fr.simplon.projetlemoulin.entities.Event;
 import fr.simplon.projetlemoulin.entities.Partner;
+import jakarta.validation.Valid;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
@@ -77,7 +80,7 @@ public class PartnerClientController {
      * @param model The model used to add attributes for the view.
      * @return The name of the view to display the partner creation form.
      */
-    @GetMapping("/admin/formulairePartenaire")
+    @GetMapping("/admin/creationPartenaire")
     public String displayPartnerForm(Model model) {
         this.restTemplate = new RestTemplate();
         Partner partner = new Partner();
@@ -94,16 +97,20 @@ public class PartnerClientController {
      * @return The name of the view to display a confirmation message.
      */
     @PostMapping("/admin/AjouterPartenaire")
-    public String addPartner(@ModelAttribute("partner") Partner partner, Model model) {
-        this.restTemplate = new RestTemplate();
-        String url = "http://localhost:8085/rest/partners";
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        HttpEntity<Partner> request = new HttpEntity<>(partner, headers);
-        ResponseEntity<Partner> response = restTemplate.postForEntity(url, request, Partner.class);
+    public String addPartner(@ModelAttribute("partner") @Valid Partner partner, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            return "admin/formulairePartenaire";
+        } else {
+            this.restTemplate = new RestTemplate();
+            String url = "http://localhost:8085/rest/partners";
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            HttpEntity<Partner> request = new HttpEntity<>(partner, headers);
+            ResponseEntity<Partner> response = restTemplate.postForEntity(url, request, Partner.class);
 
-        model.addAttribute("Message", "L'organisme partenaire a bien été ajouté.");
-        return "message";
+            model.addAttribute("Message", "L'organisme partenaire a bien été ajouté.");
+            return "message";
+        }
     }
 
 
@@ -154,8 +161,13 @@ public class PartnerClientController {
      * @param model The Model object to add attributes to the view.
      * @return The name of the view to display a confirmation message.
      */
-    @PostMapping("/admin/MAJPartenaire/{id}")
-    public String updatePartner (@ModelAttribute("organisme") Partner partner, @PathVariable Long id, Model model) {
+    @PutMapping("/admin/MAJPartenaire/{id}")
+    public String updatePartner (@ModelAttribute("partner") @Valid Partner partner,
+                                 BindingResult bindingResult, @PathVariable Long id,
+                                 Model model) {
+        if (bindingResult.hasErrors()) {
+            return "admin/formulaireModifPartenaire";
+        } else {
         this.restTemplate = new RestTemplate();
         String url = "http://localhost:8085/rest/updatePartner/{id}";
         HttpHeaders headers = new HttpHeaders();
@@ -165,6 +177,7 @@ public class PartnerClientController {
 
         model.addAttribute("Message", "Les données de l'organisme partenaire ont bien été mises à jour.");
         return "message";
+        }
     }
 
 

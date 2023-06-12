@@ -4,7 +4,9 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+          crossorigin=""/>
     <link rel="stylesheet" href="/css/styleMoulin.css">
     <link rel="stylesheet" href="/css/styleNavbar.css">
     <link rel="stylesheet" href="/css/styleFicheEvenement.css">
@@ -65,16 +67,17 @@
           <p class="eventDetails-speaker"> Intervenant.e.s :
             <span th:text="*{event.speaker}"></span>
           </p>
-          <button th:if="${event.limit_places == true}" class="eventDetails-button" type="button" th:onclick="|window.location.href= '@{/membre/InscriptionParticipant/{eventId}/{username}(eventId=${event.id}, username=${#authentication.getName()})}'|">S'inscrire</button>
+          <button th:if="${event.limit_places == true}" class="eventDetails-button" type="button"
+                  th:onclick="|window.location.href= '@{/membre/InscriptionParticipant/{eventId}/{username}(eventId=${event.id}, username=${#authentication.getName()})}'|">S'inscrire</button>
         </div>
       </section>
 
       <section class="eventDetails-block">
         <div class="eventDetails-numbers">
-          <p th:if="${event.limit_places == true}" >Nombre de places ouvertes: <span  th:text="*{event.total_places}"></span></p>
-          <p th:if="${event.limit_places == true}">Nombre de places restantes: <span  th:text="*{event.available_places}"></span></p>
+          <p th:if="${event.limit_places == true}" >Nombre de places ouvertes:<span  th:text="*{event.total_places}"></span></p>
+          <p th:if="${event.limit_places == true}">Nombre de places restantes:<span  th:text="*{event.available_places}"></span></p>
           <br>
-          <p th:if="${event.limit_places == true}">Tarif / personne: <span  th:text="*{event.price}"></span> €</p>
+          <p th:if="${event.limit_places == true}">Tarif / personne:<span  th:text="*{event.price}"></span> €</p>
           <p th:if="${event.limit_places != true}">Entrée libre</p>
         </div>
         <div class="eventDetails-contact">
@@ -84,8 +87,8 @@
             <p>29830 Lampaul-Ploudalmézeau</p>
             <br>
             <h5>Contact:</h5>
-            <p>contacter Nathalie au 07 06 05 04 03</p>
-            <p>Email: poulet.te@ecolieumoulinduroz.org</p>
+            <p>Pour plus de renseignements, contacter Nathalie au 07 06 05 04 03</p>
+            <p>Email: LeMoulin@gmail.com</p>
             <p>29830 Lampaul-Ploudalmézeau</p>
           </div>
           <div id="mapLocationMoulin"></div>
@@ -94,8 +97,9 @@
     </main>
   </body>
 
-  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+          crossorigin=""></script>
   <script src="/javascript/locationMoulin.js"></script>
 
 </html>

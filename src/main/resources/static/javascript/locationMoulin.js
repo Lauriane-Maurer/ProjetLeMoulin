@@ -1,9 +1,9 @@
 let map = L.map('mapLocationMoulin').setView([48.56790835686583, -4.6629741396325075], 8);
 
 // Ajouter une couche de tuiles OpenStreetMap à la carte
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors',
-    maxZoom: 14
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 14,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 
 // Ajouter le marqueur

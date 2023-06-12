@@ -195,7 +195,6 @@ public class EventClientController {
     @PutMapping("/admin/ModificationEvenement/{id}")
     public String updateEvent(@ModelAttribute("event") @Valid Event event, BindingResult bindingResult, @PathVariable Long id, Model model) {
         if (bindingResult.hasErrors()) {
-            // Gérer les erreurs de validation ici
             return "admin/formulaireModifEvenement";
         } else {
             this.restTemplate = new RestTemplate();

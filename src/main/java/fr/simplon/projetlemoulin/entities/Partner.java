@@ -3,6 +3,9 @@ package fr.simplon.projetlemoulin.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
+import org.hibernate.validator.constraints.URL;
 
 import java.util.List;
 
@@ -19,10 +22,15 @@ public class Partner {
     private String activity;
     @NotNull
     @Column(length = 600)
+    @Pattern(regexp = "^[\\p{L}\\d\\s’'-.,?!:()…]+$", message = "La description contient des caractères non autorisés")
     private String description;
+    @Pattern(regexp = "^[\\p{L}\\d\\s’'-.,?!:()…]+$", message = "L'adresse contient des caractères non autorisés")
     private String adress;
+    @Pattern(regexp = "^[\\p{L}\\d\\s’'-.,?!:()…]+$", message = "Le nom de la ville contient des caractères non autorisés")
     private String town;
-    private int zip_code;
+    @Size(min = 5, max = 5, message = "Le code postal doit comporter 5 caractères")
+    private String zip_code;
+    @URL(message = "Veuillez entrer une URL valide commençant par 'https://'")
     private String url;
     private Double latitude;
     private Double longitude;
@@ -37,7 +45,7 @@ public class Partner {
     public Partner() {
     }
 
-    public Partner(String name, String activity, String description, String adress, String town, int zip_code, String url, Double latitude, Double longitude, List<Event> events) {
+    public Partner(String name, String activity, String description, String adress, String town, String zip_code, String url, Double latitude, Double longitude, List<Event> events) {
         this.name = name;
         this.activity = activity;
         this.description = description;
@@ -98,11 +106,11 @@ public class Partner {
         this.town = town;
     }
 
-    public int getZip_code() {
+    public String getZip_code() {
         return zip_code;
     }
 
-    public void setZip_code(int zip_code) {
+    public void setZip_code(String zip_code) {
         this.zip_code = zip_code;
     }
 

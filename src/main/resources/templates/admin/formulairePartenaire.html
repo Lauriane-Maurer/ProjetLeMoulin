@@ -36,18 +36,24 @@
         <option value="Autre">Autre</option>
         </select>
         <textarea rows="4" cols="50" class="form-item" type="text" th:field="*{description}" placeholder="Description" required></textarea>
+        <span class="error" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
         <input class="form-item" type="text" th:field="*{url}" placeholder="Site internet"/>
+        <span class="error" th:if="${#fields.hasErrors('url')}" th:errors="*{url}"></span>
       </div>
 
       <div class="form-section">
         <h5>Localisation</h5>
         <input class="form-item" type="text" th:field="*{adress}" placeholder="Adresse" required/>
+        <span class="error" th:if="${#fields.hasErrors('adress')}" th:errors="*{adress}"></span>
         <input class="form-item" type="text" th:field="*{town}" placeholder="Ville" required/>
-        <input class="form-item" type="number" th:field="*{zip_code}" placeholder="Code postal" required/>
+        <span class="error" th:if="${#fields.hasErrors('town')}" th:errors="*{town}"></span>
+        <input class="form-item" type="text" th:field="*{zip_code}" placeholder="Code postal" required/>
+        <span class="error" th:if="${#fields.hasErrors('zip_code')}" th:errors="*{zip_code}"></span>
         <input class="form-item" type="number" th:field="*{latitude}" step="any" placeholder="Latitude"/>
         <input class="form-item" type="number" th:field="*{longitude}" step="any" placeholder="Longitude"/>
       </div>
     </div>
+
     <input class="creation-button" type="submit" value="Enregistrer"/>
   </form>
 </main>

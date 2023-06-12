@@ -29,12 +29,10 @@ public class ParticipantEventRestController {
         return repo.findAll();
     }
 
-
     @GetMapping(path = "/rest/participantEventId/{id}")
     public ParticipantEvent getParticipantEventDetails(@PathVariable Long id)throws NoSuchElementException {
         return repo.findById(id).orElseThrow();
     }
-
     @PostMapping(path="/rest/participantEvent")
     public ParticipantEvent addParticipantEvent(@RequestBody ParticipantEvent newParticipantEvent) {
         return repo.save(newParticipantEvent);

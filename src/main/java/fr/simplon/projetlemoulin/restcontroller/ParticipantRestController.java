@@ -16,10 +16,7 @@ public class ParticipantRestController {
 
 
     @GetMapping(path = "/rest/participants")
-    public List<Participant> getAllParticipants() {
-
-        return repo.findAll();
-    }
+    public List<Participant> getAllParticipants() {return repo.findAll();}
 
 
     @GetMapping(path = "/rest/participantId/{id}")
@@ -27,10 +24,8 @@ public class ParticipantRestController {
         return repo.findById(id).orElseThrow();
     }
 
-
     @PostMapping(path="/rest/participants")
     public Participant addParticipant(@RequestBody Participant newParticipant) {
-
         return repo.save(newParticipant);
     }
 

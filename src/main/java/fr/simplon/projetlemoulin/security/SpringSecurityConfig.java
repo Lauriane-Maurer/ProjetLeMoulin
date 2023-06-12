@@ -32,7 +32,8 @@ public class SpringSecurityConfig  {
     public UserDetailsManager users(DataSource dataSource) { return new JdbcUserDetailsManager(dataSource); }
 
     @Bean
-    public PasswordEncoder passwordEncoder() { return PasswordEncoderFactories.createDelegatingPasswordEncoder(); }
+    public PasswordEncoder passwordEncoder() {
+        return PasswordEncoderFactories.createDelegatingPasswordEncoder(); }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception
