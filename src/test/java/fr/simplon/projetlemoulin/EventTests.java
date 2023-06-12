@@ -196,7 +196,7 @@ public class EventTests {
 
         ResponseEntity<Event> response1 = restTemplate.postForEntity(URL, event, Event.class);
 
-        // Récupération de l'identifiant du sondage créé
+        // Récupération de l'identifiant de l'évènement créé
         Long newEventId = response1.getBody().getId();
         Assertions.assertNotNull(newEventId);
 
