@@ -1,4 +1,4 @@
-# LE MOULIN
+# Guide Utilisateur de l'application LE MOULIN
 
 Le Moulin est un tiers-lieu qui a pour vocation
 d'accueillir des évènements divers tels que des 
@@ -23,7 +23,7 @@ les évènements et les organismes partenaires
 (ajouter, modifier, supprimer), ainsi que de
 consulter la liste des participants à un évènement.
 
-## Guide Utilisateur
+## Utilisation
 
 ### Configuration
 
@@ -316,6 +316,16 @@ associés à cet organisme partenaire ne seront pas pour autant
 supprimés. Si vous cliquez sur ok, un message vous confirmera
 la suppression de l'organisme partenaire.
 
+## Développeurs
+
+### Javadoc 
+ La documentation Javadoc a été générée pour 
+faciliter la compréhension et la navigation du 
+code source. Pour accéder à la Javadoc, veuillez
+ouvrir le fichier index.html situé dans le 
+ répertoire `Javadoc` à la racine du porjet. Cette
+documentation détaille els différentes classes  
+ et méthodes du code Java uutilisé dans ce projet.
 
 ### Technologies utilisées
 
@@ -330,8 +340,26 @@ utilisés [ici](/HELP.md)).
 
 
 ### Tests unitaires
+Une classe Test a été créée pour chaque entité,
+dans laquelle ont été effectués des tests unitaires 
+afin de vérifier le bon fonctionnement des 
+méthodes CRUD. Avant chaque test, 
+un `@BeforeEach` est utilisé pour créer un 
+nouvel objet de l'entité en question à l'aide 
+d'un constructeur approprié. Ensuite, chaque 
+test commence par l'envoi d'une requête POST 
+pour créer cet objet spécifique sur lequel 
+nous effectuons le test. Enfin, à la fin du 
+test, l'objet est supprimé.
 
-
+Cette approche garantit que chaque test est 
+exécuté sur un objet frais et indépendant, 
+évitant ainsi les interactions indésirables 
+entre les tests. De plus, cela nous permet de 
+vérifier le bon fonctionnement des opérations 
+CRUD (Create, Read, Update, Delete) pour 
+chaque entité de manière isolée et 
+reproductible.
 
 
 
