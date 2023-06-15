@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import org.hibernate.annotations.Cascade;
 
 import java.time.LocalDateTime;
@@ -23,6 +24,7 @@ public class Event {
     private String title;
     @NotNull
     @Column(length = 600)
+    @Pattern(regexp = "^[\\p{L}\\d\\s’'-.,?!:()…]+$", message = "La description contient des caractères non autorisés")
     private String description;
     @Future(message = "La date de début doit être dans le futur")
     @NotNull

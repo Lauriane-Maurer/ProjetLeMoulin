@@ -24,7 +24,7 @@ fetch("/geolocalisationPartenaires")
                 url = "http://" + url;
             }
             let link = "<a href='" + url + "'>" + partner.url + "</a>";
-            marker.bindPopup("<b>" + partner.name+ "</b><br>" + partner.adress + "<br>" +
+            marker.bindPopup("<b>" + partner.name+ "</b><br>" + partner.address + "<br>" +
                 partner.zip_code+ "<br>" + partner.town + "<br>" + link).openPopup();
 
 

@@ -34,6 +34,7 @@
         </select>
         <input class="form-item" type="text" th:field="*{title}" placeholder="Titre" required/>
         <textarea rows="4" cols="50" class="form-item" type="text" th:field="*{description}" placeholder="Description" required/></textarea>
+        <span class="error" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
         <select class="form-item-select" id="photo" name="photo" th:field="*{photo}">
           <option value="/photos/beachYoga.jpg">Beach Yoga</option>
           <option value="/photos/cuisine1.jpg">Cuisine 1</option>

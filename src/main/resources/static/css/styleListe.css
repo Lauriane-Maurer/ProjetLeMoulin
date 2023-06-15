@@ -88,6 +88,7 @@
 /*---------------------style for ListeInscritsEvenement------------------------------------*/
 
 
+
 .detailEvent{
     line-height: 8px;
 }
@@ -123,6 +124,12 @@
         margin: 5px auto;
         overflow-x: scroll;
     }
+
+    .List-main p{
+        margin: 50px auto 20px auto;
+        text-align: center;
+    }
+
 
     .List-table{
         width: 700px;

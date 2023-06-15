@@ -327,6 +327,8 @@ ouvrir le fichier index.html situé dans le
 documentation détaille els différentes classes  
  et méthodes du code Java uutilisé dans ce projet.
 
+![img_9.png](img_9.png)
+
 ### Technologies utilisées
 
 L'application est développée avec Spring Boot (voir le détail des packages
@@ -349,7 +351,7 @@ nouvel objet de l'entité en question à l'aide
 d'un constructeur approprié. Ensuite, chaque 
 test commence par l'envoi d'une requête POST 
 pour créer cet objet spécifique sur lequel 
-nous effectuons le test. Enfin, à la fin du 
+j'effectue le test. Enfin, à la fin du 
 test, l'objet est supprimé.
 
 Cette approche garantit que chaque test est 

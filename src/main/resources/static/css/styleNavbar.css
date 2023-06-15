@@ -34,6 +34,16 @@ label, #toggle
     display: none;
 }
 
+.menu-membre{
+    display: flex;
+    flex-direction: row;
+    padding: 0 5px;
+}
+
+.sign{
+    margin: 0 5px;
+}
+
 /*---------------------style Responsive------------------------------------*/
 
 
@@ -61,6 +71,22 @@ label, #toggle
         font-size: 30px;
         cursor: pointer;
     }
+
+    .menu-membre{
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        line-height: 2;
+    }
+
+    .bienvenue-membre {
+        display: flex;
+        flex-direction: row;
+    }
+
+.sign {
+    display: none;
+}
 
 
     #toggle:checked + .navbar {

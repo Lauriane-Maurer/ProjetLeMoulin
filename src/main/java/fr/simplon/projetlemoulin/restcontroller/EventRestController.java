@@ -2,7 +2,6 @@ package fr.simplon.projetlemoulin.restcontroller;
 
 import fr.simplon.projetlemoulin.entities.Event;
 import fr.simplon.projetlemoulin.repositories.EventRepository;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -19,7 +18,6 @@ import java.util.NoSuchElementException;
  */
 
 @RestController
-@RequestMapping("/api")
 public class EventRestController {
 
     @Autowired
@@ -39,7 +37,6 @@ public class EventRestController {
      * @return A list of all events.
      */
     @GetMapping(path = "/rest/events")
-    @ApiResponse(responseCode = "200", description = "Les ressources ont été trouvées et renvoyées avec succès.")
     public List<Event> getEvents() {
         return repo.findAll();
     }
@@ -51,7 +48,6 @@ public class EventRestController {
      * @return A list of all events in JSON format.
      */
     @GetMapping("/rest/eventsCards")
-    @ResponseBody
     public List<Event> getAllEventsAsJson() {
         List<Event> events = repo.findAll();
         return events;
@@ -66,8 +62,6 @@ public class EventRestController {
      * @throws NoSuchElementException if the event with the given ID is not found.
      */
     @GetMapping(path = "/rest/events/{id}")
-    @ApiResponse(responseCode = "200", description = "La ressource a été trouvée et renvoyée avec succès.")
-    @ApiResponse(responseCode = "404", description = "La ressource n'existe pas.")
     public Event getEventDetails(@PathVariable Long id)throws NoSuchElementException {
         return repo.findById(id).orElseThrow();
     }
