@@ -56,7 +56,7 @@ chaque page.
 Le tableau liste les organismes partenaires du 
 Moulin. La carte affiche la localisation de chaque partenaire. 
 
-![img.png](img.png)
+![img_10.png](img_10.png)
 
 Vous pouvez rechercher un organisme en saisissant un mot-clé dans la barre 
 de recherche. 
